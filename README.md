@@ -64,6 +64,9 @@ Goal of the network is to predict if in the sequence of numbers hides anomaly.
 
 Input layer takes on input 10 numbers, hidden layer work within 5 neurons, and output layer return 1 if anomaly is detected and 0 if not.
 
+Average accuracy of standard network -> 87%-92%
+Average accuracy of quantized network -> 80%-85%
+
 
 ## How to compile C code into hex files
 You need to execture commands from the network_for_stm32 folder.
