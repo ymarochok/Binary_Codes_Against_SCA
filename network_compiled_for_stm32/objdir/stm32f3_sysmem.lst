@@ -1,0 +1,201 @@
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 4
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"stm32f3_sysmem.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.file 1 "./hal/stm32f3/stm32f3_sysmem.c"
+  18              		.section	.text._sbrk,"ax",%progbits
+  19              		.align	1
+  20              		.global	_sbrk
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  25              	_sbrk:
+  26              	.LVL0:
+  27              	.LFB3:
+   1:./hal/stm32f3/stm32f3_sysmem.c **** /**
+   2:./hal/stm32f3/stm32f3_sysmem.c **** *****************************************************************************
+   3:./hal/stm32f3/stm32f3_sysmem.c **** **
+   4:./hal/stm32f3/stm32f3_sysmem.c **** **  File        : sysmem.c
+   5:./hal/stm32f3/stm32f3_sysmem.c **** **
+   6:./hal/stm32f3/stm32f3_sysmem.c **** **  Author	    : Ac6
+   7:./hal/stm32f3/stm32f3_sysmem.c **** **
+   8:./hal/stm32f3/stm32f3_sysmem.c **** **  Abstract    : System Workbench Minimal System Memory calls file
+   9:./hal/stm32f3/stm32f3_sysmem.c **** **
+  10:./hal/stm32f3/stm32f3_sysmem.c **** ** 		          For more information about which c-functions
+  11:./hal/stm32f3/stm32f3_sysmem.c **** **                need which of these lowlevel functions
+  12:./hal/stm32f3/stm32f3_sysmem.c **** **                please consult the Newlib libc-manual
+  13:./hal/stm32f3/stm32f3_sysmem.c **** **
+  14:./hal/stm32f3/stm32f3_sysmem.c **** **  Environment : System Workbench for MCU
+  15:./hal/stm32f3/stm32f3_sysmem.c **** **
+  16:./hal/stm32f3/stm32f3_sysmem.c **** **  Distribution: The file is distributed �as is,� without any warranty
+  17:./hal/stm32f3/stm32f3_sysmem.c **** **                of any kind.
+  18:./hal/stm32f3/stm32f3_sysmem.c **** **
+  19:./hal/stm32f3/stm32f3_sysmem.c **** *****************************************************************************
+  20:./hal/stm32f3/stm32f3_sysmem.c **** **
+  21:./hal/stm32f3/stm32f3_sysmem.c **** ** <h2><center>&copy; COPYRIGHT(c) 2014 Ac6</center></h2>
+  22:./hal/stm32f3/stm32f3_sysmem.c **** **
+  23:./hal/stm32f3/stm32f3_sysmem.c **** ** Redistribution and use in source and binary forms, with or without modification,
+  24:./hal/stm32f3/stm32f3_sysmem.c **** ** are permitted provided that the following conditions are met:
+  25:./hal/stm32f3/stm32f3_sysmem.c **** **   1. Redistributions of source code must retain the above copyright notice,
+  26:./hal/stm32f3/stm32f3_sysmem.c **** **      this list of conditions and the following disclaimer.
+  27:./hal/stm32f3/stm32f3_sysmem.c **** **   2. Redistributions in binary form must reproduce the above copyright notice,
+  28:./hal/stm32f3/stm32f3_sysmem.c **** **      this list of conditions and the following disclaimer in the documentation
+  29:./hal/stm32f3/stm32f3_sysmem.c **** **      and/or other materials provided with the distribution.
+  30:./hal/stm32f3/stm32f3_sysmem.c **** **   3. Neither the name of Ac6 nor the names of its contributors
+  31:./hal/stm32f3/stm32f3_sysmem.c **** **      may be used to endorse or promote products derived from this software
+  32:./hal/stm32f3/stm32f3_sysmem.c **** **      without specific prior written permission.
+  33:./hal/stm32f3/stm32f3_sysmem.c **** **
+  34:./hal/stm32f3/stm32f3_sysmem.c **** ** THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+  35:./hal/stm32f3/stm32f3_sysmem.c **** ** AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+  36:./hal/stm32f3/stm32f3_sysmem.c **** ** IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+  37:./hal/stm32f3/stm32f3_sysmem.c **** ** DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+  38:./hal/stm32f3/stm32f3_sysmem.c **** ** FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+  39:./hal/stm32f3/stm32f3_sysmem.c **** ** DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+  40:./hal/stm32f3/stm32f3_sysmem.c **** ** SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+  41:./hal/stm32f3/stm32f3_sysmem.c **** ** CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+  42:./hal/stm32f3/stm32f3_sysmem.c **** ** OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  43:./hal/stm32f3/stm32f3_sysmem.c **** ** OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  44:./hal/stm32f3/stm32f3_sysmem.c **** **
+  45:./hal/stm32f3/stm32f3_sysmem.c **** *****************************************************************************
+  46:./hal/stm32f3/stm32f3_sysmem.c **** */
+  47:./hal/stm32f3/stm32f3_sysmem.c **** 
+  48:./hal/stm32f3/stm32f3_sysmem.c **** /* Includes */
+  49:./hal/stm32f3/stm32f3_sysmem.c **** #include <errno.h>
+  50:./hal/stm32f3/stm32f3_sysmem.c **** #include <stdio.h>
+  51:./hal/stm32f3/stm32f3_sysmem.c **** #include <sys/types.h>  
+  52:./hal/stm32f3/stm32f3_sysmem.c **** 
+  53:./hal/stm32f3/stm32f3_sysmem.c **** /* Variables */
+  54:./hal/stm32f3/stm32f3_sysmem.c **** //Uncomment following if needed - commented out for now as not used and causes warning
+  55:./hal/stm32f3/stm32f3_sysmem.c **** //extern int errno;
+  56:./hal/stm32f3/stm32f3_sysmem.c **** register char * stack_ptr asm("sp");
+  57:./hal/stm32f3/stm32f3_sysmem.c **** 
+  58:./hal/stm32f3/stm32f3_sysmem.c **** /* Functions */
+  59:./hal/stm32f3/stm32f3_sysmem.c **** 
+  60:./hal/stm32f3/stm32f3_sysmem.c **** /**
+  61:./hal/stm32f3/stm32f3_sysmem.c ****  _sbrk
+  62:./hal/stm32f3/stm32f3_sysmem.c ****  Increase program data space. Malloc and related functions depend on this
+  63:./hal/stm32f3/stm32f3_sysmem.c **** **/
+  64:./hal/stm32f3/stm32f3_sysmem.c **** caddr_t _sbrk(int incr)
+  65:./hal/stm32f3/stm32f3_sysmem.c **** {
+  28              		.loc 1 65 1 view -0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  66:./hal/stm32f3/stm32f3_sysmem.c **** 	extern char end asm("end");
+  32              		.loc 1 66 2 view .LVU1
+  67:./hal/stm32f3/stm32f3_sysmem.c **** 	static char *heap_end;
+  33              		.loc 1 67 2 view .LVU2
+  68:./hal/stm32f3/stm32f3_sysmem.c **** 	char *prev_heap_end;
+  34              		.loc 1 68 2 view .LVU3
+  69:./hal/stm32f3/stm32f3_sysmem.c **** 
+  70:./hal/stm32f3/stm32f3_sysmem.c **** 	if (heap_end == 0)
+  35              		.loc 1 70 2 view .LVU4
+  36              		.loc 1 70 15 is_stmt 0 view .LVU5
+  37 0000 094A     		ldr	r2, .L5
+  65:./hal/stm32f3/stm32f3_sysmem.c **** 	extern char end asm("end");
+  38              		.loc 1 65 1 view .LVU6
+  39 0002 08B5     		push	{r3, lr}
+  40              	.LCFI0:
+  41              		.cfi_def_cfa_offset 8
+  42              		.cfi_offset 3, -8
+  43              		.cfi_offset 14, -4
+  65:./hal/stm32f3/stm32f3_sysmem.c **** 	extern char end asm("end");
+  44              		.loc 1 65 1 view .LVU7
+  45 0004 0346     		mov	r3, r0
+  46              		.loc 1 70 15 view .LVU8
+  47 0006 1068     		ldr	r0, [r2]
+  48              	.LVL1:
+  49              		.loc 1 70 5 view .LVU9
+  50 0008 08B9     		cbnz	r0, .L2
+  71:./hal/stm32f3/stm32f3_sysmem.c **** 		heap_end = &end;
+  51              		.loc 1 71 3 is_stmt 1 view .LVU10
+  52              		.loc 1 71 12 is_stmt 0 view .LVU11
+  53 000a 0848     		ldr	r0, .L5+4
+  54 000c 1060     		str	r0, [r2]
+  55              	.L2:
+  72:./hal/stm32f3/stm32f3_sysmem.c **** 
+  73:./hal/stm32f3/stm32f3_sysmem.c **** 	prev_heap_end = heap_end;
+  56              		.loc 1 73 2 is_stmt 1 view .LVU12
+  57              	.LVL2:
+  74:./hal/stm32f3/stm32f3_sysmem.c **** 	if (heap_end + incr > stack_ptr)
+  58              		.loc 1 74 2 view .LVU13
+  59              		.loc 1 74 15 is_stmt 0 view .LVU14
+  60 000e 0344     		add	r3, r3, r0
+  61              	.LVL3:
+  62              		.loc 1 74 5 view .LVU15
+  63 0010 6946     		mov	r1, sp
+  64 0012 8B42     		cmp	r3, r1
+  65 0014 06D9     		bls	.L3
+  75:./hal/stm32f3/stm32f3_sysmem.c **** 	{
+  76:./hal/stm32f3/stm32f3_sysmem.c **** 		errno = ENOMEM;
+  66              		.loc 1 76 3 is_stmt 1 view .LVU16
+  67 0016 FFF7FEFF 		bl	__errno
+  68              	.LVL4:
+  69              		.loc 1 76 9 is_stmt 0 discriminator 1 view .LVU17
+  70 001a 0C23     		movs	r3, #12
+  71 001c 0360     		str	r3, [r0]
+  77:./hal/stm32f3/stm32f3_sysmem.c **** 		return (caddr_t) -1;
+  72              		.loc 1 77 3 is_stmt 1 view .LVU18
+  73              		.loc 1 77 10 is_stmt 0 view .LVU19
+  74 001e 4FF0FF30 		mov	r0, #-1
+  75              	.L1:
+  78:./hal/stm32f3/stm32f3_sysmem.c **** 	}
+  79:./hal/stm32f3/stm32f3_sysmem.c **** 
+  80:./hal/stm32f3/stm32f3_sysmem.c **** 	heap_end += incr;
+  81:./hal/stm32f3/stm32f3_sysmem.c **** 
+  82:./hal/stm32f3/stm32f3_sysmem.c **** 	return (caddr_t) prev_heap_end;
+  83:./hal/stm32f3/stm32f3_sysmem.c **** }
+  76              		.loc 1 83 1 view .LVU20
+  77 0022 08BD     		pop	{r3, pc}
+  78              	.LVL5:
+  79              	.L3:
+  80:./hal/stm32f3/stm32f3_sysmem.c **** 
+  80              		.loc 1 80 2 is_stmt 1 view .LVU21
+  80:./hal/stm32f3/stm32f3_sysmem.c **** 
+  81              		.loc 1 80 11 is_stmt 0 view .LVU22
+  82 0024 1360     		str	r3, [r2]
+  83              	.LVL6:
+  82:./hal/stm32f3/stm32f3_sysmem.c **** }
+  84              		.loc 1 82 2 is_stmt 1 view .LVU23
+  82:./hal/stm32f3/stm32f3_sysmem.c **** }
+  85              		.loc 1 82 9 is_stmt 0 view .LVU24
+  86 0026 FCE7     		b	.L1
+  87              	.L6:
+  88              		.align	2
+  89              	.L5:
+  90 0028 00000000 		.word	.LANCHOR0
+  91 002c 00000000 		.word	end
+  92              		.cfi_endproc
+  93              	.LFE3:
+  95              		.bss
+  96              		.align	2
+  97              		.set	.LANCHOR0,. + 0
+ 100              	heap_end.0:
+ 101 0000 00000000 		.space	4
+ 102              		.text
+ 103              	.Letext0:
+ 104              		.file 2 "/usr/arm-none-eabi/include/sys/types.h"
+ 105              		.file 3 "/usr/arm-none-eabi/include/sys/errno.h"
+DEFINED SYMBOLS
+                            *ABS*:00000000 stm32f3_sysmem.c
+     /tmp/cc1pFgvG.s:19     .text._sbrk:00000000 $t
+     /tmp/cc1pFgvG.s:25     .text._sbrk:00000000 _sbrk
+     /tmp/cc1pFgvG.s:90     .text._sbrk:00000028 $d
+     /tmp/cc1pFgvG.s:96     .bss:00000000 $d
+     /tmp/cc1pFgvG.s:100    .bss:00000000 heap_end.0
+
+UNDEFINED SYMBOLS
+__errno
+end

@@ -1,0 +1,325 @@
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 4
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"network.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.file 1 "network.c"
+  18              		.section	.text.network_forward,"ax",%progbits
+  19              		.align	1
+  20              		.global	network_forward
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  25              	network_forward:
+  26              	.LVL0:
+  27              	.LFB3:
+   1:network.c     **** #include "network_config.h"
+   2:network.c     **** #include "network.h"
+   3:network.c     **** #include <stdio.h>
+   4:network.c     **** float network_forward(const float input[])
+   5:network.c     **** {
+  28              		.loc 1 5 1 view -0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 40
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+   6:network.c     ****     float hidden[NET_L1];
+  32              		.loc 1 6 5 view .LVU1
+   7:network.c     **** 
+   8:network.c     ****     for (int i = 0; i < NET_L1; i++) {
+  33              		.loc 1 8 5 view .LVU2
+  34              	.LBB2:
+  35              		.loc 1 8 10 view .LVU3
+  36              		.loc 1 8 23 discriminator 1 view .LVU4
+  37              	.LBE2:
+   5:network.c     ****     float hidden[NET_L1];
+  38              		.loc 1 5 1 is_stmt 0 view .LVU5
+  39 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
+  40              	.LCFI0:
+  41              		.cfi_def_cfa_offset 36
+  42              		.cfi_offset 4, -36
+  43              		.cfi_offset 5, -32
+  44              		.cfi_offset 6, -28
+  45              		.cfi_offset 7, -24
+  46              		.cfi_offset 8, -20
+  47              		.cfi_offset 9, -16
+  48              		.cfi_offset 10, -12
+  49              		.cfi_offset 11, -8
+  50              		.cfi_offset 14, -4
+  51 0004 0346     		mov	r3, r0
+  52 0006 8BB0     		sub	sp, sp, #44
+  53              	.LCFI1:
+  54              		.cfi_def_cfa_offset 80
+  55 0008 DFF8B4A0 		ldr	r10, .L11
+   5:network.c     ****     float hidden[NET_L1];
+  56              		.loc 1 5 1 view .LVU6
+  57 000c 0190     		str	r0, [sp, #4]
+  58 000e 05AE     		add	r6, sp, #20
+  59 0010 2433     		adds	r3, r3, #36
+  60 0012 0AF10508 		add	r8, r10, #5
+  61              	.LBB9:
+  62              	.LBB3:
+   9:network.c     ****         float acc = 0;
+  63              		.loc 1 9 15 view .LVU7
+  64 0016 B346     		mov	fp, r6
+  65              	.LBE3:
+   8:network.c     ****         float acc = 0;
+  66              		.loc 1 8 14 view .LVU8
+  67 0018 0025     		movs	r5, #0
+  68 001a 0293     		str	r3, [sp, #8]
+  69              	.LBB6:
+  70              		.loc 1 9 15 view .LVU9
+  71 001c 0027     		movs	r7, #0
+  72              	.LVL1:
+  73              	.L2:
+  74              	.LBB4:
+  10:network.c     ****         for (int j = 0; j < NET_INPUTS; j++) {
+  75              		.loc 1 10 27 is_stmt 1 discriminator 1 view .LVU10
+  76 001e 019B     		ldr	r3, [sp, #4]
+  77              	.LBE4:
+  78              	.LBE6:
+  79              	.LBE9:
+   5:network.c     ****     float hidden[NET_L1];
+  80              		.loc 1 5 1 is_stmt 0 view .LVU11
+  81 0020 4246     		mov	r2, r8
+  82 0022 A3F10409 		sub	r9, r3, #4
+  83              	.LBB10:
+  84              	.LBB7:
+   9:network.c     ****         for (int j = 0; j < NET_INPUTS; j++) {
+  85              		.loc 1 9 15 view .LVU12
+  86 0026 3C46     		mov	r4, r7
+  87              	.LVL2:
+  88              	.L3:
+  89              	.LBB5:
+  11:network.c     ****             acc += (float)L1_W[i][j] * SCALE_L1_W * input[j];
+  90              		.loc 1 11 13 is_stmt 1 view .LVU13
+  91              		.loc 1 11 20 is_stmt 0 view .LVU14
+  92 0028 12F9010B 		ldrsb	r0, [r2], #1
+  93 002c 0392     		str	r2, [sp, #12]
+  94 002e FFF7FEFF 		bl	__aeabi_i2f
+  95              	.LVL3:
+  96              		.loc 1 11 38 view .LVU15
+  97 0032 2449     		ldr	r1, .L11+4
+  98 0034 FFF7FEFF 		bl	__aeabi_fmul
+  99              	.LVL4:
+ 100              		.loc 1 11 51 view .LVU16
+ 101 0038 59F8041F 		ldr	r1, [r9, #4]!	@ float
+ 102 003c FFF7FEFF 		bl	__aeabi_fmul
+ 103              	.LVL5:
+ 104 0040 0146     		mov	r1, r0
+ 105              		.loc 1 11 17 view .LVU17
+ 106 0042 2046     		mov	r0, r4
+ 107 0044 FFF7FEFF 		bl	__aeabi_fadd
+ 108              	.LVL6:
+  10:network.c     ****             acc += (float)L1_W[i][j] * SCALE_L1_W * input[j];
+ 109              		.loc 1 10 27 discriminator 1 view .LVU18
+ 110 0048 029B     		ldr	r3, [sp, #8]
+ 111 004a 039A     		ldr	r2, [sp, #12]
+ 112 004c 4B45     		cmp	r3, r9
+ 113              		.loc 1 11 17 view .LVU19
+ 114 004e 0446     		mov	r4, r0
+ 115              	.LVL7:
+  10:network.c     ****             acc += (float)L1_W[i][j] * SCALE_L1_W * input[j];
+ 116              		.loc 1 10 42 is_stmt 1 discriminator 3 view .LVU20
+  10:network.c     ****             acc += (float)L1_W[i][j] * SCALE_L1_W * input[j];
+ 117              		.loc 1 10 27 discriminator 1 view .LVU21
+ 118 0050 EAD1     		bne	.L3
+ 119              	.LBE5:
+  12:network.c     ****         }
+  13:network.c     ****         acc += (float)L1_B[i] * SCALE_L1_B;
+ 120              		.loc 1 13 9 view .LVU22
+ 121              		.loc 1 13 16 is_stmt 0 view .LVU23
+ 122 0052 1AF9010B 		ldrsb	r0, [r10], #1
+ 123              	.LVL8:
+ 124              		.loc 1 13 16 view .LVU24
+ 125 0056 FFF7FEFF 		bl	__aeabi_i2f
+ 126              	.LVL9:
+ 127              		.loc 1 13 31 view .LVU25
+ 128 005a 1B49     		ldr	r1, .L11+8
+ 129 005c FFF7FEFF 		bl	__aeabi_fmul
+ 130              	.LVL10:
+ 131              		.loc 1 13 13 view .LVU26
+ 132 0060 2146     		mov	r1, r4
+ 133 0062 FFF7FEFF 		bl	__aeabi_fadd
+ 134              	.LVL11:
+  14:network.c     ****         hidden[i] = acc > 0 ? acc : 0;
+ 135              		.loc 1 14 19 discriminator 4 view .LVU27
+ 136 0066 3946     		mov	r1, r7
+  13:network.c     ****         hidden[i] = acc > 0 ? acc : 0;
+ 137              		.loc 1 13 13 view .LVU28
+ 138 0068 0446     		mov	r4, r0
+ 139              	.LVL12:
+ 140              		.loc 1 14 9 is_stmt 1 view .LVU29
+ 141              		.loc 1 14 19 is_stmt 0 discriminator 4 view .LVU30
+ 142 006a FFF7FEFF 		bl	__aeabi_fcmpgt
+ 143              	.LVL13:
+ 144              		.loc 1 14 19 discriminator 4 view .LVU31
+ 145 006e 00B9     		cbnz	r0, .L5
+ 146 0070 3C46     		mov	r4, r7
+ 147              	.LVL14:
+ 148              	.L5:
+ 149              		.loc 1 14 19 discriminator 4 view .LVU32
+ 150              	.LBE7:
+   8:network.c     ****         float acc = 0;
+ 151              		.loc 1 8 34 discriminator 2 view .LVU33
+ 152 0072 0135     		adds	r5, r5, #1
+ 153              	.LVL15:
+   8:network.c     ****         float acc = 0;
+ 154              		.loc 1 8 23 discriminator 1 view .LVU34
+ 155 0074 052D     		cmp	r5, #5
+ 156              	.LBB8:
+ 157              		.loc 1 14 19 discriminator 4 view .LVU35
+ 158 0076 4BF8044B 		str	r4, [fp], #4	@ float
+ 159              	.LBE8:
+   8:network.c     ****         float acc = 0;
+ 160              		.loc 1 8 34 is_stmt 1 discriminator 2 view .LVU36
+ 161              	.LVL16:
+   8:network.c     ****         float acc = 0;
+ 162              		.loc 1 8 23 discriminator 1 view .LVU37
+ 163 007a 08F10A08 		add	r8, r8, #10
+ 164 007e CED1     		bne	.L2
+ 165 0080 124F     		ldr	r7, .L11+12
+ 166              	.LBE10:
+ 167              	.LBB11:
+  15:network.c     ****     }
+  16:network.c     **** 
+  17:network.c     ****     float out = 0;
+  18:network.c     ****     for (int j = 0; j < NET_L1; j++) {
+  19:network.c     ****         out += (float)L2_W[0][j] * SCALE_L2_W * hidden[j];
+ 168              		.loc 1 19 34 is_stmt 0 view .LVU38
+ 169 0082 DFF84C90 		ldr	r9, .L11+16
+  18:network.c     ****         out += (float)L2_W[0][j] * SCALE_L2_W * hidden[j];
+ 170              		.loc 1 18 14 view .LVU39
+ 171 0086 0025     		movs	r5, #0
+ 172              	.LVL17:
+  18:network.c     ****         out += (float)L2_W[0][j] * SCALE_L2_W * hidden[j];
+ 173              		.loc 1 18 14 view .LVU40
+ 174              	.LBE11:
+  17:network.c     ****     for (int j = 0; j < NET_L1; j++) {
+ 175              		.loc 1 17 11 view .LVU41
+ 176 0088 0024     		movs	r4, #0
+ 177              	.L8:
+ 178              	.LVL18:
+ 179              	.LBB12:
+ 180              		.loc 1 19 9 is_stmt 1 view .LVU42
+ 181              		.loc 1 19 55 is_stmt 0 view .LVU43
+ 182 008a 56F8048B 		ldr	r8, [r6], #4	@ float
+ 183              		.loc 1 19 16 view .LVU44
+ 184 008e 17F9010B 		ldrsb	r0, [r7], #1
+ 185 0092 FFF7FEFF 		bl	__aeabi_i2f
+ 186              	.LVL19:
+ 187              		.loc 1 19 34 view .LVU45
+ 188 0096 4946     		mov	r1, r9
+ 189 0098 FFF7FEFF 		bl	__aeabi_fmul
+ 190              	.LVL20:
+ 191              		.loc 1 19 47 view .LVU46
+ 192 009c 4146     		mov	r1, r8
+ 193 009e FFF7FEFF 		bl	__aeabi_fmul
+ 194              	.LVL21:
+ 195 00a2 0146     		mov	r1, r0
+ 196              		.loc 1 19 13 view .LVU47
+ 197 00a4 2046     		mov	r0, r4
+ 198 00a6 FFF7FEFF 		bl	__aeabi_fadd
+ 199              	.LVL22:
+  18:network.c     ****         out += (float)L2_W[0][j] * SCALE_L2_W * hidden[j];
+ 200              		.loc 1 18 34 discriminator 3 view .LVU48
+ 201 00aa 0135     		adds	r5, r5, #1
+ 202              	.LVL23:
+  18:network.c     ****         out += (float)L2_W[0][j] * SCALE_L2_W * hidden[j];
+ 203              		.loc 1 18 23 discriminator 1 view .LVU49
+ 204 00ac 052D     		cmp	r5, #5
+ 205              		.loc 1 19 13 view .LVU50
+ 206 00ae 0446     		mov	r4, r0
+  18:network.c     ****         out += (float)L2_W[0][j] * SCALE_L2_W * hidden[j];
+ 207              		.loc 1 18 34 is_stmt 1 discriminator 3 view .LVU51
+ 208              	.LVL24:
+  18:network.c     ****         out += (float)L2_W[0][j] * SCALE_L2_W * hidden[j];
+ 209              		.loc 1 18 23 discriminator 1 view .LVU52
+ 210 00b0 EBD1     		bne	.L8
+ 211              	.LBE12:
+  20:network.c     ****     }
+  21:network.c     ****     out += (float)L2_B[0] * SCALE_L2_B;
+ 212              		.loc 1 21 5 view .LVU53
+ 213              	.LVL25:
+  22:network.c     **** 
+  23:network.c     ****     return out;
+ 214              		.loc 1 23 5 view .LVU54
+  21:network.c     **** 
+ 215              		.loc 1 21 9 is_stmt 0 view .LVU55
+ 216 00b2 0849     		ldr	r1, .L11+20
+ 217 00b4 FFF7FEFF 		bl	__aeabi_fsub
+ 218              	.LVL26:
+  24:network.c     **** }
+ 219              		.loc 1 24 1 view .LVU56
+ 220 00b8 0BB0     		add	sp, sp, #44
+ 221              	.LCFI2:
+ 222              		.cfi_def_cfa_offset 36
+ 223              		@ sp needed
+ 224 00ba BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 225              	.LVL27:
+ 226              	.L12:
+ 227              		.loc 1 24 1 view .LVU57
+ 228 00be 00BF     		.align	2
+ 229              	.L11:
+ 230 00c0 00000000 		.word	.LANCHOR0
+ 231 00c4 C78FDE3E 		.word	1054773191
+ 232 00c8 D850E03C 		.word	1021333720
+ 233 00cc 37000000 		.word	.LANCHOR0+55
+ 234 00d0 7280593F 		.word	1062830194
+ 235 00d4 D27CBF3F 		.word	1069513938
+ 236              		.cfi_endproc
+ 237              	.LFE3:
+ 239              		.section	.rodata
+ 240              		.set	.LANCHOR0,. + 0
+ 243              	L1_B:
+ 244 0000 FFFC05FF 		.ascii	"\377\374\005\377\007"
+ 244      07
+ 247              	L1_W:
+ 248 0005 0202FDFC 		.ascii	"\002\002\375\374\376\377\375\376\377\372"
+ 248      FEFFFDFE 
+ 248      FFFA
+ 249 000f FB01FD02 		.ascii	"\373\001\375\002\376\376\373\376\376\006"
+ 249      FEFEFBFE 
+ 249      FE06
+ 250 0019 030203FE 		.ascii	"\003\002\003\376\004\376\002\375\376\001"
+ 250      04FE02FD 
+ 250      FE01
+ 251 0023 02FC0205 		.ascii	"\002\374\002\005\376\376\376\377\376\000"
+ 251      FEFEFEFF 
+ 251      FE00
+ 252 002d FC00FDFB 		.ascii	"\374\000\375\373\376\377\007\376\000\002"
+ 252      FEFF07FE 
+ 252      0002
+ 255              	L2_W:
+ 256 0037 06050706 		.ascii	"\006\005\007\006\005"
+ 256      05
+ 257              		.text
+ 258              	.Letext0:
+ 259              		.file 2 "/usr/arm-none-eabi/include/machine/_default_types.h"
+ 260              		.file 3 "/usr/arm-none-eabi/include/sys/_stdint.h"
+ 261              		.file 4 "network_config.h"
+DEFINED SYMBOLS
+                            *ABS*:00000000 network.c
+     /tmp/cc4ThDYF.s:19     .text.network_forward:00000000 $t
+     /tmp/cc4ThDYF.s:25     .text.network_forward:00000000 network_forward
+     /tmp/cc4ThDYF.s:230    .text.network_forward:000000c0 $d
+     /tmp/cc4ThDYF.s:243    .rodata:00000000 L1_B
+     /tmp/cc4ThDYF.s:247    .rodata:00000005 L1_W
+     /tmp/cc4ThDYF.s:255    .rodata:00000037 L2_W
+
+UNDEFINED SYMBOLS
+__aeabi_i2f
+__aeabi_fmul
+__aeabi_fadd
+__aeabi_fcmpgt
+__aeabi_fsub
