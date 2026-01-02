@@ -2,6 +2,18 @@
 
 This repositroy contains project which is scientific part of our bachlor`s work. 
 
+## Current state of the project
+While network development went great and applying quantization technique and translating network to the convertable into hex file format too, taking measurements and simulating the attack not so well. Network is not triggers on special command sended by script, and not executing. In the result we have captured trace which looks just like noise, and cant somehow serve to extract hidden parameters of the network.
+
+**Plan to finish by the end of second semeter:**
+1. Capture clear traces with highly visible trigger activation.
+2. Carry the attack on quantized unprotected network.
+3. Implement protection technique on the network.
+
+4. Execute the attack on protected network and compare the results.
+
+Additionally would be great to investigate another approaches of designing protection technique (encoding values and lookup-table implementation) comparing the final results to chose the most effective technique.
+
 ## Project structure
 This project contains all related files to the project, some of which are only inter steps in achieving final goal. On January 2026 to the main three folder in this respository can be assigned linked to them stages of final solution development, which allows to look through all the proces in need of debugging, or researching more detailed specific steps.
 
@@ -45,6 +57,13 @@ This project contains all related files to the project, some of which are only i
 - **trigger_test.py** -> executes code for triggering a start of neural network computation and capturing the power_consumption trace.
 
 In addition this folder contains hex files used for debugging the project as files for just getting response back from the chip and one with artifically delayed network execution for clearer trigger recognition on captured traces.
+
+## Network model description
+Network model contains one hidden layer, one input and one output.
+Goal of the network is to predict if in the sequence of numbers hides anomaly.
+
+Input layer takes on input 10 numbers, hidden layer work within 5 neurons, and output layer return 1 if anomaly is detected and 0 if not.
+
 
 ## How to compile C code into hex files
 You need to execture commands from the network_for_stm32 folder.
