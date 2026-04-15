@@ -190,11 +190,11 @@
  105              		.file 3 "/usr/arm-none-eabi/include/sys/errno.h"
 DEFINED SYMBOLS
                             *ABS*:00000000 stm32f3_sysmem.c
-     /tmp/cc1pFgvG.s:19     .text._sbrk:00000000 $t
-     /tmp/cc1pFgvG.s:25     .text._sbrk:00000000 _sbrk
-     /tmp/cc1pFgvG.s:90     .text._sbrk:00000028 $d
-     /tmp/cc1pFgvG.s:96     .bss:00000000 $d
-     /tmp/cc1pFgvG.s:100    .bss:00000000 heap_end.0
+     /tmp/ccJsOAu4.s:19     .text._sbrk:00000000 $t
+     /tmp/ccJsOAu4.s:25     .text._sbrk:00000000 _sbrk
+     /tmp/ccJsOAu4.s:90     .text._sbrk:00000028 $d
+     /tmp/ccJsOAu4.s:96     .bss:00000000 $d
+     /tmp/ccJsOAu4.s:100    .bss:00000000 heap_end.0
 
 UNDEFINED SYMBOLS
 __errno

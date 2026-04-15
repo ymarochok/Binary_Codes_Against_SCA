@@ -24,205 +24,207 @@
   25              	handle:
   26              	.LVL0:
   27              	.LFB0:
-   1:main.c        **** 
-   2:main.c        **** #include "hal.h"
-   3:main.c        **** #include "simpleserial.h"
-   4:main.c        **** #include "network.h"
-   5:main.c        **** #include "network_config.h"
-   6:main.c        **** #include "input_fixed.h"
-   7:main.c        **** #define printf(...)
-   8:main.c        **** #define puts(...)
-   9:main.c        **** 
-  10:main.c        **** uint8_t handle(uint8_t cmd, uint8_t scmd, uint8_t len, uint8_t *buf)
-  11:main.c        **** {
-  28              		.loc 1 11 1 view -0
+   1:main.c        **** #include "hal.h"
+   2:main.c        **** #include "simpleserial.h"
+   3:main.c        **** #include "network.h"
+   4:main.c        **** #include "network_config.h"
+   5:main.c        **** #include <string.h>  // For memcpy
+   6:main.c        **** 
+   7:main.c        **** // Optional: you can remove #include "input_fixed.h" since it's not used
+   8:main.c        **** 
+   9:main.c        **** #define printf(...)
+  10:main.c        **** #define puts(...)
+  11:main.c        **** 
+  12:main.c        **** uint8_t handle(uint8_t cmd, uint8_t scmd, uint8_t len, uint8_t *buf)
+  13:main.c        **** {
+  28              		.loc 1 13 1 view -0
   29              		.cfi_startproc
-  30              		@ args = 0, pretend = 0, frame = 8
+  30              		@ args = 0, pretend = 0, frame = 48
   31              		@ frame_needed = 0, uses_anonymous_args = 0
-  12:main.c        ****     trigger_high();
-  32              		.loc 1 12 5 view .LVU1
-  11:main.c        ****     trigger_high();
-  33              		.loc 1 11 1 is_stmt 0 view .LVU2
-  34 0000 13B5     		push	{r0, r1, r4, lr}
+  14:main.c        ****     trigger_high();
+  32              		.loc 1 14 5 view .LVU1
+  13:main.c        ****     trigger_high();
+  33              		.loc 1 13 1 is_stmt 0 view .LVU2
+  34 0000 30B5     		push	{r4, r5, lr}
   35              	.LCFI0:
-  36              		.cfi_def_cfa_offset 16
-  37              		.cfi_offset 4, -8
-  38              		.cfi_offset 14, -4
-  39              		.loc 1 12 5 view .LVU3
-  40 0002 FFF7FEFF 		bl	trigger_high
-  41              	.LVL1:
-  13:main.c        **** 
-  14:main.c        ****     float output = network_forward(input_fixed);
-  42              		.loc 1 14 5 is_stmt 1 view .LVU4
-  43              		.loc 1 14 20 is_stmt 0 view .LVU5
-  44 0006 0E48     		ldr	r0, .L2
-  45 0008 FFF7FEFF 		bl	network_forward
-  46              	.LVL2:
-  47 000c 0446     		mov	r4, r0
-  48              	.LVL3:
-  15:main.c        **** 
-  16:main.c        ****     trigger_low();
-  49              		.loc 1 16 5 is_stmt 1 view .LVU6
-  50 000e FFF7FEFF 		bl	trigger_low
-  51              	.LVL4:
-  17:main.c        **** 
-  18:main.c        ****     uint8_t response[4];
-  52              		.loc 1 18 5 view .LVU7
-  19:main.c        ****     response[0] = ((uint8_t*)&output)[0];
-  53              		.loc 1 19 5 view .LVU8
-  20:main.c        ****     response[1] = ((uint8_t*)&output)[1];
-  54              		.loc 1 20 17 is_stmt 0 view .LVU9
-  55 0012 C4F30723 		ubfx	r3, r4, #8, #8
-  21:main.c        ****     response[2] = ((uint8_t*)&output)[2];
-  22:main.c        ****     response[3] = ((uint8_t*)&output)[3];
-  56              		.loc 1 22 17 view .LVU10
-  57 0016 C4F30760 		ubfx	r0, r4, #24, #8
-  20:main.c        ****     response[1] = ((uint8_t*)&output)[1];
-  58              		.loc 1 20 17 view .LVU11
-  59 001a 8DF80530 		strb	r3, [sp, #5]
-  60              		.loc 1 22 17 view .LVU12
-  61 001e 8DF80700 		strb	r0, [sp, #7]
-  21:main.c        ****     response[2] = ((uint8_t*)&output)[2];
-  62              		.loc 1 21 17 view .LVU13
-  63 0022 C4F30743 		ubfx	r3, r4, #16, #8
-  23:main.c        ****     
-  24:main.c        ****     simpleserial_put('r', 4, response);
-  64              		.loc 1 24 5 view .LVU14
-  65 0026 01AA     		add	r2, sp, #4
-  66 0028 0421     		movs	r1, #4
-  67 002a 7220     		movs	r0, #114
-  19:main.c        ****     response[1] = ((uint8_t*)&output)[1];
-  68              		.loc 1 19 17 view .LVU15
-  69 002c 8DF80440 		strb	r4, [sp, #4]
-  20:main.c        ****     response[2] = ((uint8_t*)&output)[2];
-  70              		.loc 1 20 5 is_stmt 1 view .LVU16
-  21:main.c        ****     response[3] = ((uint8_t*)&output)[3];
-  71              		.loc 1 21 5 view .LVU17
-  21:main.c        ****     response[3] = ((uint8_t*)&output)[3];
-  72              		.loc 1 21 17 is_stmt 0 view .LVU18
-  73 0030 8DF80630 		strb	r3, [sp, #6]
+  36              		.cfi_def_cfa_offset 12
+  37              		.cfi_offset 4, -12
+  38              		.cfi_offset 5, -8
+  39              		.cfi_offset 14, -4
+  40 0002 1C46     		mov	r4, r3
+  41 0004 8DB0     		sub	sp, sp, #52
+  42              	.LCFI1:
+  43              		.cfi_def_cfa_offset 64
+  44              		.loc 1 14 5 view .LVU3
+  45 0006 FFF7FEFF 		bl	trigger_high
+  46              	.LVL1:
+  15:main.c        ****     
+  16:main.c        ****     // FIX #1: Use memcpy instead of direct pointer casting (more robust)
+  17:main.c        ****     float input[10];
+  47              		.loc 1 17 5 is_stmt 1 view .LVU4
+  18:main.c        ****     memcpy(input, buf, 40);  // Copy 40 bytes (10 floats) from buffer
+  48              		.loc 1 18 5 view .LVU5
+  49 000a 2346     		mov	r3, r4
+  50 000c 03F12805 		add	r5, r3, #40
+  51 0010 02AC     		add	r4, sp, #8
+  52              	.LVL2:
+  53              	.L2:
+  54              		.loc 1 18 5 is_stmt 0 view .LVU6
+  55 0012 1868     		ldr	r0, [r3]	@ unaligned
+  56 0014 5968     		ldr	r1, [r3, #4]	@ unaligned
+  57 0016 2246     		mov	r2, r4
+  58 0018 03C2     		stmia	r2!, {r0, r1}
+  59 001a 0833     		adds	r3, r3, #8
+  60 001c AB42     		cmp	r3, r5
+  61 001e 1446     		mov	r4, r2
+  62 0020 F7D1     		bne	.L2
+  19:main.c        ****     
+  20:main.c        ****     // FIX #2: Run network with the actual received random inputs
+  21:main.c        ****     float output = network_forward(input);
+  63              		.loc 1 21 5 is_stmt 1 view .LVU7
+  64              		.loc 1 21 20 is_stmt 0 view .LVU8
+  65 0022 02A8     		add	r0, sp, #8
+  66 0024 FFF7FEFF 		bl	network_forward
+  67              	.LVL3:
   22:main.c        ****     
-  74              		.loc 1 22 5 is_stmt 1 view .LVU19
-  75              		.loc 1 24 5 view .LVU20
-  76 0034 FFF7FEFF 		bl	simpleserial_put
-  77              	.LVL5:
-  25:main.c        **** 
-  26:main.c        ****     return 0;
-  78              		.loc 1 26 5 view .LVU21
-  27:main.c        **** }
-  79              		.loc 1 27 1 is_stmt 0 view .LVU22
-  80 0038 0020     		movs	r0, #0
-  81 003a 02B0     		add	sp, sp, #8
-  82              	.LCFI1:
-  83              		.cfi_def_cfa_offset 8
-  84              		@ sp needed
-  85 003c 10BD     		pop	{r4, pc}
-  86              	.L3:
-  87 003e 00BF     		.align	2
-  88              	.L2:
-  89 0040 00000000 		.word	.LANCHOR0
-  90              		.cfi_endproc
-  91              	.LFE0:
-  93              		.section	.text.startup.main,"ax",%progbits
-  94              		.align	1
-  95              		.global	main
-  96              		.syntax unified
-  97              		.thumb
-  98              		.thumb_func
- 100              	main:
- 101              	.LFB1:
-  28:main.c        **** 
-  29:main.c        **** int main(void)
-  30:main.c        **** {
- 102              		.loc 1 30 1 is_stmt 1 view -0
- 103              		.cfi_startproc
- 104              		@ Volatile: function does not return.
- 105              		@ args = 0, pretend = 0, frame = 0
- 106              		@ frame_needed = 0, uses_anonymous_args = 0
-  31:main.c        ****     platform_init();
- 107              		.loc 1 31 5 view .LVU24
-  30:main.c        ****     platform_init();
- 108              		.loc 1 30 1 is_stmt 0 view .LVU25
- 109 0000 08B5     		push	{r3, lr}
- 110              	.LCFI2:
- 111              		.cfi_def_cfa_offset 8
- 112              		.cfi_offset 3, -8
- 113              		.cfi_offset 14, -4
- 114              		.loc 1 31 5 view .LVU26
- 115 0002 FFF7FEFF 		bl	platform_init
- 116              	.LVL6:
-  32:main.c        ****     init_uart();
- 117              		.loc 1 32 5 is_stmt 1 view .LVU27
- 118 0006 FFF7FEFF 		bl	init_uart
- 119              	.LVL7:
-  33:main.c        ****     trigger_setup();
- 120              		.loc 1 33 5 view .LVU28
- 121 000a FFF7FEFF 		bl	trigger_setup
- 122              	.LVL8:
-  34:main.c        **** 
-  35:main.c        ****     simpleserial_init();
- 123              		.loc 1 35 5 view .LVU29
- 124 000e FFF7FEFF 		bl	simpleserial_init
- 125              	.LVL9:
-  36:main.c        **** 
-  37:main.c        ****     simpleserial_addcmd('p', 0, handle);
- 126              		.loc 1 37 5 view .LVU30
- 127 0012 044A     		ldr	r2, .L6
- 128 0014 0021     		movs	r1, #0
- 129 0016 7020     		movs	r0, #112
- 130 0018 FFF7FEFF 		bl	simpleserial_addcmd
- 131              	.LVL10:
- 132              	.L5:
-  38:main.c        **** 
-  39:main.c        ****     while (1)
- 133              		.loc 1 39 5 view .LVU31
-  40:main.c        ****         simpleserial_get();
- 134              		.loc 1 40 9 discriminator 1 view .LVU32
- 135 001c FFF7FEFF 		bl	simpleserial_get
- 136              	.LVL11:
-  39:main.c        ****         simpleserial_get();
- 137              		.loc 1 39 11 view .LVU33
- 138 0020 FCE7     		b	.L5
- 139              	.L7:
- 140 0022 00BF     		.align	2
- 141              	.L6:
- 142 0024 00000000 		.word	handle
- 143              		.cfi_endproc
- 144              	.LFE1:
- 146              		.section	.rodata
- 147              		.align	2
- 148              		.set	.LANCHOR0,. + 0
- 151              	input_fixed:
- 152 0000 CDCCCC3D 		.word	1036831949
- 153 0004 CDCC4C3E 		.word	1045220557
- 154 0008 9A99993E 		.word	1050253722
- 155 000c CDCCCC3E 		.word	1053609165
- 156 0010 0000003F 		.word	1056964608
- 157 0014 9A99193F 		.word	1058642330
- 158 0018 3333333F 		.word	1060320051
- 159 001c CDCC4C3F 		.word	1061997773
- 160 0020 6666663F 		.word	1063675494
- 161 0024 0000803F 		.word	1065353216
+  23:main.c        ****     trigger_low();
+  68              		.loc 1 23 5 is_stmt 1 view .LVU9
+  69 0028 FFF7FEFF 		bl	trigger_low
+  70              	.LVL4:
+  24:main.c        **** 
+  25:main.c        ****     // Send dummy response (4 bytes)
+  26:main.c        ****     uint8_t response[4] = {0x01, 0x02, 0x03, 0x04};
+  71              		.loc 1 26 5 view .LVU10
+  72              		.loc 1 26 13 is_stmt 0 view .LVU11
+  73 002c 084B     		ldr	r3, .L4
+  74 002e 0193     		str	r3, [sp, #4]
+  27:main.c        ****     simpleserial_put('r', 4, response);
+  75              		.loc 1 27 5 is_stmt 1 view .LVU12
+  76 0030 01AA     		add	r2, sp, #4
+  77 0032 0421     		movs	r1, #4
+  78 0034 7220     		movs	r0, #114
+  79 0036 FFF7FEFF 		bl	simpleserial_put
+  80              	.LVL5:
+  28:main.c        ****     
+  29:main.c        ****     // Send acknowledgment
+  30:main.c        ****     uint8_t ack[1] = {0x01};
+  81              		.loc 1 30 5 view .LVU13
+  82              		.loc 1 30 13 is_stmt 0 view .LVU14
+  83 003a 0121     		movs	r1, #1
+  31:main.c        ****     simpleserial_put('e', 1, ack);
+  84              		.loc 1 31 5 view .LVU15
+  85 003c 6A46     		mov	r2, sp
+  86 003e 6520     		movs	r0, #101
+  30:main.c        ****     simpleserial_put('e', 1, ack);
+  87              		.loc 1 30 13 view .LVU16
+  88 0040 8DF80010 		strb	r1, [sp]
+  89              		.loc 1 31 5 is_stmt 1 view .LVU17
+  90 0044 FFF7FEFF 		bl	simpleserial_put
+  91              	.LVL6:
+  32:main.c        **** 
+  33:main.c        ****     return 0;
+  92              		.loc 1 33 5 view .LVU18
+  34:main.c        **** }
+  93              		.loc 1 34 1 is_stmt 0 view .LVU19
+  94 0048 0020     		movs	r0, #0
+  95 004a 0DB0     		add	sp, sp, #52
+  96              	.LCFI2:
+  97              		.cfi_def_cfa_offset 12
+  98              		@ sp needed
+  99 004c 30BD     		pop	{r4, r5, pc}
+ 100              	.LVL7:
+ 101              	.L5:
+ 102              		.loc 1 34 1 view .LVU20
+ 103 004e 00BF     		.align	2
+ 104              	.L4:
+ 105 0050 01020304 		.word	67305985
+ 106              		.cfi_endproc
+ 107              	.LFE0:
+ 109              		.section	.text.startup.main,"ax",%progbits
+ 110              		.align	1
+ 111              		.global	main
+ 112              		.syntax unified
+ 113              		.thumb
+ 114              		.thumb_func
+ 116              	main:
+ 117              	.LFB1:
+  35:main.c        **** 
+  36:main.c        **** int main(void)
+  37:main.c        **** {
+ 118              		.loc 1 37 1 is_stmt 1 view -0
+ 119              		.cfi_startproc
+ 120              		@ Volatile: function does not return.
+ 121              		@ args = 0, pretend = 0, frame = 0
+ 122              		@ frame_needed = 0, uses_anonymous_args = 0
+  38:main.c        ****     platform_init();
+ 123              		.loc 1 38 5 view .LVU22
+  37:main.c        ****     platform_init();
+ 124              		.loc 1 37 1 is_stmt 0 view .LVU23
+ 125 0000 08B5     		push	{r3, lr}
+ 126              	.LCFI3:
+ 127              		.cfi_def_cfa_offset 8
+ 128              		.cfi_offset 3, -8
+ 129              		.cfi_offset 14, -4
+ 130              		.loc 1 38 5 view .LVU24
+ 131 0002 FFF7FEFF 		bl	platform_init
+ 132              	.LVL8:
+  39:main.c        ****     init_uart();
+ 133              		.loc 1 39 5 is_stmt 1 view .LVU25
+ 134 0006 FFF7FEFF 		bl	init_uart
+ 135              	.LVL9:
+  40:main.c        ****     trigger_setup();
+ 136              		.loc 1 40 5 view .LVU26
+ 137 000a FFF7FEFF 		bl	trigger_setup
+ 138              	.LVL10:
+  41:main.c        **** 
+  42:main.c        ****     simpleserial_init();
+ 139              		.loc 1 42 5 view .LVU27
+ 140 000e FFF7FEFF 		bl	simpleserial_init
+ 141              	.LVL11:
+  43:main.c        ****     
+  44:main.c        ****     // FIX #3: Accept 40 bytes (10 floats × 4 bytes each)
+  45:main.c        ****     simpleserial_addcmd('p', 40, handle);
+ 142              		.loc 1 45 5 view .LVU28
+ 143 0012 044A     		ldr	r2, .L8
+ 144 0014 2821     		movs	r1, #40
+ 145 0016 7020     		movs	r0, #112
+ 146 0018 FFF7FEFF 		bl	simpleserial_addcmd
+ 147              	.LVL12:
+ 148              	.L7:
+  46:main.c        **** 
+  47:main.c        ****     while (1)
+ 149              		.loc 1 47 5 view .LVU29
+  48:main.c        ****         simpleserial_get();
+ 150              		.loc 1 48 9 discriminator 1 view .LVU30
+ 151 001c FFF7FEFF 		bl	simpleserial_get
+ 152              	.LVL13:
+  47:main.c        ****         simpleserial_get();
+ 153              		.loc 1 47 11 view .LVU31
+ 154 0020 FCE7     		b	.L7
+ 155              	.L9:
+ 156 0022 00BF     		.align	2
+ 157              	.L8:
+ 158 0024 00000000 		.word	handle
+ 159              		.cfi_endproc
+ 160              	.LFE1:
  162              		.text
  163              	.Letext0:
  164              		.file 2 "/usr/arm-none-eabi/include/machine/_default_types.h"
  165              		.file 3 "/usr/arm-none-eabi/include/sys/_stdint.h"
  166              		.file 4 "network_config.h"
- 167              		.file 5 "input_fixed.h"
- 168              		.file 6 "./simpleserial/simpleserial.h"
- 169              		.file 7 "./hal/stm32f3/stm32f3_hal.h"
- 170              		.file 8 "./hal/hal.h"
- 171              		.file 9 "network.h"
+ 167              		.file 5 "./simpleserial/simpleserial.h"
+ 168              		.file 6 "./hal/stm32f3/stm32f3_hal.h"
+ 169              		.file 7 "./hal/hal.h"
+ 170              		.file 8 "network.h"
+ 171              		.file 9 "/usr/arm-none-eabi/include/string.h"
 DEFINED SYMBOLS
                             *ABS*:00000000 main.c
-     /tmp/ccEhDoe5.s:19     .text.handle:00000000 $t
-     /tmp/ccEhDoe5.s:25     .text.handle:00000000 handle
-     /tmp/ccEhDoe5.s:89     .text.handle:00000040 $d
-     /tmp/ccEhDoe5.s:94     .text.startup.main:00000000 $t
-     /tmp/ccEhDoe5.s:100    .text.startup.main:00000000 main
-     /tmp/ccEhDoe5.s:142    .text.startup.main:00000024 $d
-     /tmp/ccEhDoe5.s:147    .rodata:00000000 $d
-     /tmp/ccEhDoe5.s:151    .rodata:00000000 input_fixed
+     /tmp/ccfmJn9W.s:19     .text.handle:00000000 $t
+     /tmp/ccfmJn9W.s:25     .text.handle:00000000 handle
+     /tmp/ccfmJn9W.s:105    .text.handle:00000050 $d
+     /tmp/ccfmJn9W.s:110    .text.startup.main:00000000 $t
+     /tmp/ccfmJn9W.s:116    .text.startup.main:00000000 main
+     /tmp/ccfmJn9W.s:158    .text.startup.main:00000024 $d
 
 UNDEFINED SYMBOLS
 trigger_high

@@ -755,7 +755,7 @@ LOAD /usr/lib/gcc/arm-none-eabi/14.2.0/thumb/v7e-m/nofp/crtn.o
                 0x08000000                g_pfnVectors
                 0x08000188                        . = ALIGN (0x4)
 
-.text           0x08000188     0x15fc
+.text           0x08000188     0x160c
                 0x08000188                        . = ALIGN (0x4)
  *(.text)
  .text          0x08000188      0x168 /usr/lib/gcc/arm-none-eabi/14.2.0/thumb/v7e-m/nofp/libgcc.a(_arm_mulsf3.o)
@@ -796,190 +796,189 @@ LOAD /usr/lib/gcc/arm-none-eabi/14.2.0/thumb/v7e-m/nofp/crtn.o
                 0x080005f8       0x24 /usr/lib/gcc/arm-none-eabi/14.2.0/thumb/v7e-m/nofp/crtbegin.o
  .text.frame_dummy
                 0x0800061c       0x1c /usr/lib/gcc/arm-none-eabi/14.2.0/thumb/v7e-m/nofp/crtbegin.o
- .text.handle   0x08000638       0x44 objdir/main.o
+ .text.handle   0x08000638       0x54 objdir/main.o
                 0x08000638                handle
  .text.startup.main
-                0x0800067c       0x28 objdir/main.o
-                0x0800067c                main
+                0x0800068c       0x28 objdir/main.o
+                0x0800068c                main
  .text.network_forward
-                0x080006a4       0xd8 objdir/network.o
-                0x080006a4                network_forward
- .text.ss_crc   0x0800077c       0x2c objdir/simpleserial.o
-                0x0800077c                ss_crc
+                0x080006b4       0xd8 objdir/network.o
+                0x080006b4                network_forward
+ .text.ss_crc   0x0800078c       0x2c objdir/simpleserial.o
+                0x0800078c                ss_crc
  .text.stuff_data
-                0x080007a8       0x22 objdir/simpleserial.o
-                0x080007a8                stuff_data
+                0x080007b8       0x22 objdir/simpleserial.o
+                0x080007b8                stuff_data
  .text.unstuff_data
-                0x080007ca       0x1e objdir/simpleserial.o
-                0x080007ca                unstuff_data
+                0x080007da       0x1e objdir/simpleserial.o
+                0x080007da                unstuff_data
  .text.simpleserial_addcmd
-                0x080007e8       0x34 objdir/simpleserial.o
-                0x080007e8                simpleserial_addcmd
+                0x080007f8       0x34 objdir/simpleserial.o
+                0x080007f8                simpleserial_addcmd
  .text.simpleserial_init
-                0x0800081c       0x24 objdir/simpleserial.o
-                0x0800081c                simpleserial_init
+                0x0800082c       0x24 objdir/simpleserial.o
+                0x0800082c                simpleserial_init
  .text.simpleserial_put
-                0x08000840       0x5a objdir/simpleserial.o
-                0x08000840                simpleserial_put
+                0x08000850       0x5a objdir/simpleserial.o
+                0x08000850                simpleserial_put
  .text.check_version
-                0x0800089a       0x1c objdir/simpleserial.o
-                0x0800089a                check_version
- *fill*         0x080008b6        0x2 
+                0x080008aa       0x1c objdir/simpleserial.o
+                0x080008aa                check_version
+ *fill*         0x080008c6        0x2 
  .text.ss_get_commands
-                0x080008b8       0x3c objdir/simpleserial.o
-                0x080008b8                ss_get_commands
+                0x080008c8       0x3c objdir/simpleserial.o
+                0x080008c8                ss_get_commands
  .text.simpleserial_get
-                0x080008f4       0xdc objdir/simpleserial.o
-                0x080008f4                simpleserial_get
+                0x08000904       0xdc objdir/simpleserial.o
+                0x08000904                simpleserial_get
  .text.platform_init
-                0x080009d0       0x7c objdir/stm32f3_hal.o
-                0x080009d0                platform_init
+                0x080009e0       0x7c objdir/stm32f3_hal.o
+                0x080009e0                platform_init
  .text.init_uart
-                0x08000a4c       0x7c objdir/stm32f3_hal.o
-                0x08000a4c                init_uart
+                0x08000a5c       0x7c objdir/stm32f3_hal.o
+                0x08000a5c                init_uart
  .text.trigger_setup
-                0x08000ac8       0x48 objdir/stm32f3_hal.o
-                0x08000ac8                trigger_setup
+                0x08000ad8       0x48 objdir/stm32f3_hal.o
+                0x08000ad8                trigger_setup
  .text.trigger_high
-                0x08000b10        0xe objdir/stm32f3_hal.o
-                0x08000b10                trigger_high
+                0x08000b20        0xe objdir/stm32f3_hal.o
+                0x08000b20                trigger_high
  .text.trigger_low
-                0x08000b1e        0xe objdir/stm32f3_hal.o
-                0x08000b1e                trigger_low
- .text.getch    0x08000b2c       0x30 objdir/stm32f3_hal.o
-                0x08000b2c                getch
- .text.putch    0x08000b5c       0x20 objdir/stm32f3_hal.o
-                0x08000b5c                putch
+                0x08000b2e        0xe objdir/stm32f3_hal.o
+                0x08000b2e                trigger_low
+ .text.getch    0x08000b3c       0x30 objdir/stm32f3_hal.o
+                0x08000b3c                getch
+ .text.putch    0x08000b6c       0x20 objdir/stm32f3_hal.o
+                0x08000b6c                putch
  .text.HAL_GetTick
-                0x08000b7c       0x10 objdir/stm32f3_hal_lowlevel.o
-                0x08000b7c                HAL_GetTick
+                0x08000b8c       0x10 objdir/stm32f3_hal_lowlevel.o
+                0x08000b8c                HAL_GetTick
  .text.HAL_RCC_OscConfig
-                0x08000b8c      0x48c objdir/stm32f3_hal_lowlevel.o
-                0x08000b8c                HAL_RCC_OscConfig
+                0x08000b9c      0x48c objdir/stm32f3_hal_lowlevel.o
+                0x08000b9c                HAL_RCC_OscConfig
  .text.HAL_RCC_ClockConfig
-                0x08001018      0x140 objdir/stm32f3_hal_lowlevel.o
-                0x08001018                HAL_RCC_ClockConfig
+                0x08001028      0x140 objdir/stm32f3_hal_lowlevel.o
+                0x08001028                HAL_RCC_ClockConfig
  .text.HAL_GPIO_Init
-                0x08001158      0x17c objdir/stm32f3_hal_lowlevel.o
-                0x08001158                HAL_GPIO_Init
+                0x08001168      0x17c objdir/stm32f3_hal_lowlevel.o
+                0x08001168                HAL_GPIO_Init
  .text.HAL_GPIO_WritePin
-                0x080012d4        0xa objdir/stm32f3_hal_lowlevel.o
-                0x080012d4                HAL_GPIO_WritePin
- *fill*         0x080012de        0x2 
+                0x080012e4        0xa objdir/stm32f3_hal_lowlevel.o
+                0x080012e4                HAL_GPIO_WritePin
+ *fill*         0x080012ee        0x2 
  .text.UART_SetConfig
-                0x080012e0      0x15c objdir/stm32f3_hal_lowlevel.o
-                0x080012e0                UART_SetConfig
+                0x080012f0      0x15c objdir/stm32f3_hal_lowlevel.o
+                0x080012f0                UART_SetConfig
  .text.UART_WaitOnFlagUntilTimeout
-                0x0800143c       0x62 objdir/stm32f3_hal_lowlevel.o
-                0x0800143c                UART_WaitOnFlagUntilTimeout
+                0x0800144c       0x62 objdir/stm32f3_hal_lowlevel.o
+                0x0800144c                UART_WaitOnFlagUntilTimeout
  .text.UART_CheckIdleState
-                0x0800149e       0x62 objdir/stm32f3_hal_lowlevel.o
-                0x0800149e                UART_CheckIdleState
+                0x080014ae       0x62 objdir/stm32f3_hal_lowlevel.o
+                0x080014ae                UART_CheckIdleState
  .text.HAL_UART_Init
-                0x08001500       0x54 objdir/stm32f3_hal_lowlevel.o
-                0x08001500                HAL_UART_Init
+                0x08001510       0x54 objdir/stm32f3_hal_lowlevel.o
+                0x08001510                HAL_UART_Init
  .text.HAL_UART_Transmit
-                0x08001554       0xac objdir/stm32f3_hal_lowlevel.o
-                0x08001554                HAL_UART_Transmit
+                0x08001564       0xac objdir/stm32f3_hal_lowlevel.o
+                0x08001564                HAL_UART_Transmit
  .text.HAL_UART_Receive
-                0x08001600       0xd6 objdir/stm32f3_hal_lowlevel.o
-                0x08001600                HAL_UART_Receive
- *fill*         0x080016d6        0x2 
+                0x08001610       0xd6 objdir/stm32f3_hal_lowlevel.o
+                0x08001610                HAL_UART_Receive
+ *fill*         0x080016e6        0x2 
  .text.Reset_Handler
-                0x080016d8       0x48 objdir/stm32f3_startup.o
-                0x080016d8                Reset_Handler
+                0x080016e8       0x48 objdir/stm32f3_startup.o
+                0x080016e8                Reset_Handler
  .text.Default_Handler
-                0x08001720        0x2 objdir/stm32f3_startup.o
-                0x08001720                DebugMon_Handler
-                0x08001720                HardFault_Handler
-                0x08001720                SysTick_Handler
-                0x08001720                PendSV_Handler
-                0x08001720                NMI_Handler
-                0x08001720                UsageFault_Handler
-                0x08001720                Default_Handler
-                0x08001720                MemManage_Handler
-                0x08001720                SVC_Handler
-                0x08001720                BusFault_Handler
- *fill*         0x08001722        0x2 
+                0x08001730        0x2 objdir/stm32f3_startup.o
+                0x08001730                DebugMon_Handler
+                0x08001730                HardFault_Handler
+                0x08001730                SysTick_Handler
+                0x08001730                PendSV_Handler
+                0x08001730                NMI_Handler
+                0x08001730                UsageFault_Handler
+                0x08001730                Default_Handler
+                0x08001730                MemManage_Handler
+                0x08001730                SVC_Handler
+                0x08001730                BusFault_Handler
+ *fill*         0x08001732        0x2 
  .text.__libc_init_array
-                0x08001724       0x48 /usr/lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libg_nano.a(libc_a-init.o)
-                0x08001724                __libc_init_array
+                0x08001734       0x48 /usr/lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libg_nano.a(libc_a-init.o)
+                0x08001734                __libc_init_array
  *(.glue_7)
- .glue_7        0x0800176c        0x0 linker stubs
+ .glue_7        0x0800177c        0x0 linker stubs
  *(.glue_7t)
- .glue_7t       0x0800176c        0x0 linker stubs
+ .glue_7t       0x0800177c        0x0 linker stubs
  *(.eh_frame)
- .eh_frame      0x0800176c        0x0 /usr/lib/gcc/arm-none-eabi/14.2.0/thumb/v7e-m/nofp/crtbegin.o
+ .eh_frame      0x0800177c        0x0 /usr/lib/gcc/arm-none-eabi/14.2.0/thumb/v7e-m/nofp/crtbegin.o
  *(.init)
- .init          0x0800176c        0x4 /usr/lib/gcc/arm-none-eabi/14.2.0/thumb/v7e-m/nofp/crti.o
-                0x0800176c                _init
- .init          0x08001770        0x8 /usr/lib/gcc/arm-none-eabi/14.2.0/thumb/v7e-m/nofp/crtn.o
+ .init          0x0800177c        0x4 /usr/lib/gcc/arm-none-eabi/14.2.0/thumb/v7e-m/nofp/crti.o
+                0x0800177c                _init
+ .init          0x08001780        0x8 /usr/lib/gcc/arm-none-eabi/14.2.0/thumb/v7e-m/nofp/crtn.o
  *(.fini)
- .fini          0x08001778        0x4 /usr/lib/gcc/arm-none-eabi/14.2.0/thumb/v7e-m/nofp/crti.o
-                0x08001778                _fini
- .fini          0x0800177c        0x8 /usr/lib/gcc/arm-none-eabi/14.2.0/thumb/v7e-m/nofp/crtn.o
-                0x08001784                        . = ALIGN (0x4)
-                0x08001784                        _etext = .
+ .fini          0x08001788        0x4 /usr/lib/gcc/arm-none-eabi/14.2.0/thumb/v7e-m/nofp/crti.o
+                0x08001788                _fini
+ .fini          0x0800178c        0x8 /usr/lib/gcc/arm-none-eabi/14.2.0/thumb/v7e-m/nofp/crtn.o
+                0x08001794                        . = ALIGN (0x4)
+                0x08001794                        _etext = .
 
-.vfp11_veneer   0x08001784        0x0
- .vfp11_veneer  0x08001784        0x0 linker stubs
+.vfp11_veneer   0x08001794        0x0
+ .vfp11_veneer  0x08001794        0x0 linker stubs
 
-.v4_bx          0x08001784        0x0
- .v4_bx         0x08001784        0x0 linker stubs
+.v4_bx          0x08001794        0x0
+ .v4_bx         0x08001794        0x0 linker stubs
 
-.iplt           0x08001784        0x0
- .iplt          0x08001784        0x0 /usr/lib/gcc/arm-none-eabi/14.2.0/thumb/v7e-m/nofp/crtbegin.o
+.iplt           0x08001794        0x0
+ .iplt          0x08001794        0x0 /usr/lib/gcc/arm-none-eabi/14.2.0/thumb/v7e-m/nofp/crtbegin.o
 
-.rodata         0x08001784       0x64
-                0x08001784                        . = ALIGN (0x4)
+.rodata         0x08001794       0x3c
+                0x08001794                        . = ALIGN (0x4)
  *(.rodata)
- .rodata        0x08001784       0x28 objdir/main.o
- .rodata        0x080017ac       0x3c objdir/network.o
+ .rodata        0x08001794       0x3c objdir/network.o
  *(.rodata*)
-                0x080017e8                        . = ALIGN (0x4)
+                0x080017d0                        . = ALIGN (0x4)
 
-.rel.dyn        0x080017e8        0x0
- .rel.iplt      0x080017e8        0x0 /usr/lib/gcc/arm-none-eabi/14.2.0/thumb/v7e-m/nofp/crtbegin.o
+.rel.dyn        0x080017d0        0x0
+ .rel.iplt      0x080017d0        0x0 /usr/lib/gcc/arm-none-eabi/14.2.0/thumb/v7e-m/nofp/crtbegin.o
 
-.ARM.extab      0x080017e8        0x0
-                0x080017e8                        . = ALIGN (0x4)
+.ARM.extab      0x080017d0        0x0
+                0x080017d0                        . = ALIGN (0x4)
  *(.ARM.extab* .gnu.linkonce.armextab.*)
-                0x080017e8                        . = ALIGN (0x4)
+                0x080017d0                        . = ALIGN (0x4)
 
-.ARM            0x080017e8        0x0
-                0x080017e8                        . = ALIGN (0x4)
-                0x080017e8                        __exidx_start = .
+.ARM            0x080017d0        0x0
+                0x080017d0                        . = ALIGN (0x4)
+                0x080017d0                        __exidx_start = .
  *(.ARM.exidx*)
-                0x080017e8                        __exidx_end = .
-                0x080017e8                        . = ALIGN (0x4)
+                0x080017d0                        __exidx_end = .
+                0x080017d0                        . = ALIGN (0x4)
 
-.preinit_array  0x080017e8        0x0
-                0x080017e8                        . = ALIGN (0x4)
-                0x080017e8                        PROVIDE (__preinit_array_start = .)
+.preinit_array  0x080017d0        0x0
+                0x080017d0                        . = ALIGN (0x4)
+                0x080017d0                        PROVIDE (__preinit_array_start = .)
  *(.preinit_array*)
-                0x080017e8                        PROVIDE (__preinit_array_end = .)
-                0x080017e8                        . = ALIGN (0x4)
+                0x080017d0                        PROVIDE (__preinit_array_end = .)
+                0x080017d0                        . = ALIGN (0x4)
 
-.init_array     0x080017e8        0x4
-                0x080017e8                        . = ALIGN (0x4)
-                0x080017e8                        PROVIDE (__init_array_start = .)
+.init_array     0x080017d0        0x4
+                0x080017d0                        . = ALIGN (0x4)
+                0x080017d0                        PROVIDE (__init_array_start = .)
  *(SORT_BY_NAME(.init_array.*))
  *(.init_array*)
- .init_array    0x080017e8        0x4 /usr/lib/gcc/arm-none-eabi/14.2.0/thumb/v7e-m/nofp/crtbegin.o
-                0x080017ec                        PROVIDE (__init_array_end = .)
-                0x080017ec                        . = ALIGN (0x4)
+ .init_array    0x080017d0        0x4 /usr/lib/gcc/arm-none-eabi/14.2.0/thumb/v7e-m/nofp/crtbegin.o
+                0x080017d4                        PROVIDE (__init_array_end = .)
+                0x080017d4                        . = ALIGN (0x4)
 
-.fini_array     0x080017ec        0x4
-                0x080017ec                        . = ALIGN (0x4)
-                0x080017ec                        PROVIDE (__fini_array_start = .)
+.fini_array     0x080017d4        0x4
+                0x080017d4                        . = ALIGN (0x4)
+                0x080017d4                        PROVIDE (__fini_array_start = .)
  *(SORT_BY_NAME(.fini_array.*))
  *(.fini_array*)
- .fini_array    0x080017ec        0x4 /usr/lib/gcc/arm-none-eabi/14.2.0/thumb/v7e-m/nofp/crtbegin.o
-                0x080017f0                        PROVIDE (__fini_array_end = .)
-                0x080017f0                        . = ALIGN (0x4)
-                0x080017f0                        _sidata = LOADADDR (.data)
+ .fini_array    0x080017d4        0x4 /usr/lib/gcc/arm-none-eabi/14.2.0/thumb/v7e-m/nofp/crtbegin.o
+                0x080017d8                        PROVIDE (__fini_array_end = .)
+                0x080017d8                        . = ALIGN (0x4)
+                0x080017d8                        _sidata = LOADADDR (.data)
 
-.data           0x20000000        0x0 load address 0x080017f0
+.data           0x20000000        0x0 load address 0x080017d8
                 0x20000000                        . = ALIGN (0x4)
                 0x20000000                        _sdata = .
  *(.data)
@@ -987,11 +986,11 @@ LOAD /usr/lib/gcc/arm-none-eabi/14.2.0/thumb/v7e-m/nofp/crtn.o
                 0x20000000                        . = ALIGN (0x4)
                 0x20000000                        _edata = .
 
-.igot.plt       0x20000000        0x0 load address 0x080017f0
+.igot.plt       0x20000000        0x0 load address 0x080017d8
  .igot.plt      0x20000000        0x0 /usr/lib/gcc/arm-none-eabi/14.2.0/thumb/v7e-m/nofp/crtbegin.o
                 0x20000000                        . = ALIGN (0x4)
 
-.bss            0x20000000      0x158 load address 0x080017f0
+.bss            0x20000000      0x158 load address 0x080017d8
                 0x20000000                        _sbss = .
                 0x20000000                        __bss_start__ = _sbss
  *(.bss)
@@ -1012,7 +1011,7 @@ LOAD /usr/lib/gcc/arm-none-eabi/14.2.0/thumb/v7e-m/nofp/crtn.o
                 0x20000158                        __bss_end__ = _ebss
 
 ._user_heap_stack
-                0x20000158      0x400 load address 0x080017f0
+                0x20000158      0x400 load address 0x080017d8
                 0x20000158                        . = ALIGN (0x8)
                 0x20000158                        PROVIDE (end = .)
                 [!provide]                        PROVIDE (_end = .)
@@ -1061,34 +1060,34 @@ LOAD /usr/lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m
 LOAD /usr/lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libm.a
 LOAD /usr/lib/gcc/arm-none-eabi/14.2.0/thumb/v7e-m/nofp/libgcc.a
 
-.debug_info     0x00000000     0x463f
- .debug_info    0x00000000      0x41f objdir/main.o
- .debug_info    0x0000041f      0x30f objdir/network.o
- .debug_info    0x0000072e      0x7ea objdir/simpleserial.o
- .debug_info    0x00000f18      0xf54 objdir/stm32f3_hal.o
- .debug_info    0x00001e6c     0x24e4 objdir/stm32f3_hal_lowlevel.o
- .debug_info    0x00004350       0x3f /usr/lib/gcc/arm-none-eabi/14.2.0/thumb/v7e-m/nofp/libgcc.a(_arm_mulsf3.o)
- .debug_info    0x0000438f       0xca /usr/lib/gcc/arm-none-eabi/14.2.0/thumb/v7e-m/nofp/libgcc.a(_arm_addsubsf3.o)
- .debug_info    0x00004459       0xdb /usr/lib/gcc/arm-none-eabi/14.2.0/thumb/v7e-m/nofp/libgcc.a(_arm_cmpsf2.o)
- .debug_info    0x00004534      0x10b /usr/lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libg_nano.a(libc_a-init.o)
+.debug_info     0x00000000     0x4697
+ .debug_info    0x00000000      0x477 objdir/main.o
+ .debug_info    0x00000477      0x30f objdir/network.o
+ .debug_info    0x00000786      0x7ea objdir/simpleserial.o
+ .debug_info    0x00000f70      0xf54 objdir/stm32f3_hal.o
+ .debug_info    0x00001ec4     0x24e4 objdir/stm32f3_hal_lowlevel.o
+ .debug_info    0x000043a8       0x3f /usr/lib/gcc/arm-none-eabi/14.2.0/thumb/v7e-m/nofp/libgcc.a(_arm_mulsf3.o)
+ .debug_info    0x000043e7       0xca /usr/lib/gcc/arm-none-eabi/14.2.0/thumb/v7e-m/nofp/libgcc.a(_arm_addsubsf3.o)
+ .debug_info    0x000044b1       0xdb /usr/lib/gcc/arm-none-eabi/14.2.0/thumb/v7e-m/nofp/libgcc.a(_arm_cmpsf2.o)
+ .debug_info    0x0000458c      0x10b /usr/lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libg_nano.a(libc_a-init.o)
 
-.debug_abbrev   0x00000000      0xc80
- .debug_abbrev  0x00000000      0x160 objdir/main.o
- .debug_abbrev  0x00000160       0xee objdir/network.o
- .debug_abbrev  0x0000024e      0x22f objdir/simpleserial.o
- .debug_abbrev  0x0000047d      0x24c objdir/stm32f3_hal.o
- .debug_abbrev  0x000006c9      0x478 objdir/stm32f3_hal_lowlevel.o
- .debug_abbrev  0x00000b41       0x26 /usr/lib/gcc/arm-none-eabi/14.2.0/thumb/v7e-m/nofp/libgcc.a(_arm_mulsf3.o)
- .debug_abbrev  0x00000b67       0x28 /usr/lib/gcc/arm-none-eabi/14.2.0/thumb/v7e-m/nofp/libgcc.a(_arm_addsubsf3.o)
- .debug_abbrev  0x00000b8f       0x28 /usr/lib/gcc/arm-none-eabi/14.2.0/thumb/v7e-m/nofp/libgcc.a(_arm_cmpsf2.o)
- .debug_abbrev  0x00000bb7       0xc9 /usr/lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libg_nano.a(libc_a-init.o)
+.debug_abbrev   0x00000000      0xc98
+ .debug_abbrev  0x00000000      0x178 objdir/main.o
+ .debug_abbrev  0x00000178       0xee objdir/network.o
+ .debug_abbrev  0x00000266      0x22f objdir/simpleserial.o
+ .debug_abbrev  0x00000495      0x24c objdir/stm32f3_hal.o
+ .debug_abbrev  0x000006e1      0x478 objdir/stm32f3_hal_lowlevel.o
+ .debug_abbrev  0x00000b59       0x26 /usr/lib/gcc/arm-none-eabi/14.2.0/thumb/v7e-m/nofp/libgcc.a(_arm_mulsf3.o)
+ .debug_abbrev  0x00000b7f       0x28 /usr/lib/gcc/arm-none-eabi/14.2.0/thumb/v7e-m/nofp/libgcc.a(_arm_addsubsf3.o)
+ .debug_abbrev  0x00000ba7       0x28 /usr/lib/gcc/arm-none-eabi/14.2.0/thumb/v7e-m/nofp/libgcc.a(_arm_cmpsf2.o)
+ .debug_abbrev  0x00000bcf       0xc9 /usr/lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libg_nano.a(libc_a-init.o)
 
-.debug_loc      0x00000000     0x2404
- .debug_loc     0x00000000      0x11a objdir/main.o
- .debug_loc     0x0000011a      0x192 objdir/network.o
- .debug_loc     0x000002ac      0x99b objdir/simpleserial.o
- .debug_loc     0x00000c47      0x1b6 objdir/stm32f3_hal.o
- .debug_loc     0x00000dfd     0x1607 objdir/stm32f3_hal_lowlevel.o
+.debug_loc      0x00000000     0x240b
+ .debug_loc     0x00000000      0x121 objdir/main.o
+ .debug_loc     0x00000121      0x192 objdir/network.o
+ .debug_loc     0x000002b3      0x99b objdir/simpleserial.o
+ .debug_loc     0x00000c4e      0x1b6 objdir/stm32f3_hal.o
+ .debug_loc     0x00000e04     0x1607 objdir/stm32f3_hal_lowlevel.o
 
 .debug_aranges  0x00000000      0x238
  .debug_aranges
@@ -1117,28 +1116,28 @@ LOAD /usr/lib/gcc/arm-none-eabi/14.2.0/thumb/v7e-m/nofp/libgcc.a
  .debug_ranges  0x00000190       0xc0 objdir/stm32f3_hal.o
  .debug_ranges  0x00000250      0x210 objdir/stm32f3_hal_lowlevel.o
 
-.debug_line     0x00000000     0x2751
- .debug_line    0x00000000      0x17e objdir/main.o
- .debug_line    0x0000017e      0x1a8 objdir/network.o
- .debug_line    0x00000326      0x5e5 objdir/simpleserial.o
- .debug_line    0x0000090b      0x36b objdir/stm32f3_hal.o
- .debug_line    0x00000c76     0x176c objdir/stm32f3_hal_lowlevel.o
- .debug_line    0x000023e2       0xbd /usr/lib/gcc/arm-none-eabi/14.2.0/thumb/v7e-m/nofp/libgcc.a(_arm_mulsf3.o)
- .debug_line    0x0000249f      0x103 /usr/lib/gcc/arm-none-eabi/14.2.0/thumb/v7e-m/nofp/libgcc.a(_arm_addsubsf3.o)
- .debug_line    0x000025a2       0x9a /usr/lib/gcc/arm-none-eabi/14.2.0/thumb/v7e-m/nofp/libgcc.a(_arm_cmpsf2.o)
- .debug_line    0x0000263c      0x115 /usr/lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libg_nano.a(libc_a-init.o)
+.debug_line     0x00000000     0x2767
+ .debug_line    0x00000000      0x194 objdir/main.o
+ .debug_line    0x00000194      0x1a8 objdir/network.o
+ .debug_line    0x0000033c      0x5e5 objdir/simpleserial.o
+ .debug_line    0x00000921      0x36b objdir/stm32f3_hal.o
+ .debug_line    0x00000c8c     0x176c objdir/stm32f3_hal_lowlevel.o
+ .debug_line    0x000023f8       0xbd /usr/lib/gcc/arm-none-eabi/14.2.0/thumb/v7e-m/nofp/libgcc.a(_arm_mulsf3.o)
+ .debug_line    0x000024b5      0x103 /usr/lib/gcc/arm-none-eabi/14.2.0/thumb/v7e-m/nofp/libgcc.a(_arm_addsubsf3.o)
+ .debug_line    0x000025b8       0x9a /usr/lib/gcc/arm-none-eabi/14.2.0/thumb/v7e-m/nofp/libgcc.a(_arm_cmpsf2.o)
+ .debug_line    0x00002652      0x115 /usr/lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libg_nano.a(libc_a-init.o)
 
-.debug_str      0x00000000     0x16f6
- .debug_str     0x00000000     0x16f6 objdir/main.o
-                                0x2d6 (size before relaxing)
- .debug_str     0x000016f6      0x262 objdir/network.o
- .debug_str     0x000016f6      0x343 objdir/simpleserial.o
- .debug_str     0x000016f6      0x97c objdir/stm32f3_hal.o
- .debug_str     0x000016f6     0x11a5 objdir/stm32f3_hal_lowlevel.o
- .debug_str     0x000016f6       0xb6 /usr/lib/gcc/arm-none-eabi/14.2.0/thumb/v7e-m/nofp/libgcc.a(_arm_mulsf3.o)
- .debug_str     0x000016f6      0x140 /usr/lib/gcc/arm-none-eabi/14.2.0/thumb/v7e-m/nofp/libgcc.a(_arm_addsubsf3.o)
- .debug_str     0x000016f6      0x155 /usr/lib/gcc/arm-none-eabi/14.2.0/thumb/v7e-m/nofp/libgcc.a(_arm_cmpsf2.o)
- .debug_str     0x000016f6      0x21a /usr/lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libg_nano.a(libc_a-init.o)
+.debug_str      0x00000000     0x16f1
+ .debug_str     0x00000000     0x16f1 objdir/main.o
+                                0x2d7 (size before relaxing)
+ .debug_str     0x000016f1      0x262 objdir/network.o
+ .debug_str     0x000016f1      0x343 objdir/simpleserial.o
+ .debug_str     0x000016f1      0x97c objdir/stm32f3_hal.o
+ .debug_str     0x000016f1     0x11a5 objdir/stm32f3_hal_lowlevel.o
+ .debug_str     0x000016f1       0xb6 /usr/lib/gcc/arm-none-eabi/14.2.0/thumb/v7e-m/nofp/libgcc.a(_arm_mulsf3.o)
+ .debug_str     0x000016f1      0x140 /usr/lib/gcc/arm-none-eabi/14.2.0/thumb/v7e-m/nofp/libgcc.a(_arm_addsubsf3.o)
+ .debug_str     0x000016f1      0x155 /usr/lib/gcc/arm-none-eabi/14.2.0/thumb/v7e-m/nofp/libgcc.a(_arm_cmpsf2.o)
+ .debug_str     0x000016f1      0x21a /usr/lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libg_nano.a(libc_a-init.o)
 
 .comment        0x00000000       0x1e
  .comment       0x00000000       0x1e objdir/main.o
@@ -1149,16 +1148,16 @@ LOAD /usr/lib/gcc/arm-none-eabi/14.2.0/thumb/v7e-m/nofp/libgcc.a
  .comment       0x0000001e       0x1f objdir/stm32f3_hal_lowlevel.o
  .comment       0x0000001e       0x1f /usr/lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libg_nano.a(libc_a-init.o)
 
-.debug_frame    0x00000000      0x614
- .debug_frame   0x00000000       0x44 objdir/main.o
- .debug_frame   0x00000044       0x3c objdir/network.o
- .debug_frame   0x00000080      0x164 objdir/simpleserial.o
- .debug_frame   0x000001e4       0xec objdir/stm32f3_hal.o
- .debug_frame   0x000002d0      0x1e0 objdir/stm32f3_hal_lowlevel.o
- .debug_frame   0x000004b0       0x24 /usr/lib/gcc/arm-none-eabi/14.2.0/thumb/v7e-m/nofp/libgcc.a(_arm_mulsf3.o)
- .debug_frame   0x000004d4       0x4c /usr/lib/gcc/arm-none-eabi/14.2.0/thumb/v7e-m/nofp/libgcc.a(_arm_addsubsf3.o)
- .debug_frame   0x00000520       0xc8 /usr/lib/gcc/arm-none-eabi/14.2.0/thumb/v7e-m/nofp/libgcc.a(_arm_cmpsf2.o)
- .debug_frame   0x000005e8       0x2c /usr/lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libg_nano.a(libc_a-init.o)
+.debug_frame    0x00000000      0x618
+ .debug_frame   0x00000000       0x48 objdir/main.o
+ .debug_frame   0x00000048       0x3c objdir/network.o
+ .debug_frame   0x00000084      0x164 objdir/simpleserial.o
+ .debug_frame   0x000001e8       0xec objdir/stm32f3_hal.o
+ .debug_frame   0x000002d4      0x1e0 objdir/stm32f3_hal_lowlevel.o
+ .debug_frame   0x000004b4       0x24 /usr/lib/gcc/arm-none-eabi/14.2.0/thumb/v7e-m/nofp/libgcc.a(_arm_mulsf3.o)
+ .debug_frame   0x000004d8       0x4c /usr/lib/gcc/arm-none-eabi/14.2.0/thumb/v7e-m/nofp/libgcc.a(_arm_addsubsf3.o)
+ .debug_frame   0x00000524       0xc8 /usr/lib/gcc/arm-none-eabi/14.2.0/thumb/v7e-m/nofp/libgcc.a(_arm_cmpsf2.o)
+ .debug_frame   0x000005ec       0x2c /usr/lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libg_nano.a(libc_a-init.o)
 
 .stab           0x00000000      0x144
  .stab          0x00000000      0x144 objdir/stm32f3_startup.o
