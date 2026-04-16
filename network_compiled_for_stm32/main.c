@@ -29,7 +29,7 @@ uint8_t handle(uint8_t cmd, uint8_t scmd, uint8_t len, uint8_t *buf)
     // Send acknowledgment
     uint8_t ack[1] = {0x01};
     simpleserial_put('e', 1, ack);
-
+ 
     return 0;
 }
 

@@ -1,0 +1,195 @@
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 4
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"main.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.file 1 "main.c"
+  18              		.section	.text.handle,"ax",%progbits
+  19              		.align	1
+  20              		.global	handle
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  25              	handle:
+  26              	.LVL0:
+  27              	.LFB0:
+   1:main.c        **** #include "hal.h"
+   2:main.c        **** #include "simpleserial.h"
+   3:main.c        **** #include "network.h"          // <-- new
+   4:main.c        **** #include "network_config.h"   // <-- new
+   5:main.c        **** 
+   6:main.c        **** uint8_t handle(uint8_t cmd, uint8_t scmd, uint8_t len, uint8_t *buf)
+   7:main.c        **** {
+  28              		.loc 1 7 1 view -0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 8
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+   8:main.c        ****     trigger_high();
+  32              		.loc 1 8 5 view .LVU1
+   7:main.c        ****     trigger_high();
+  33              		.loc 1 7 1 is_stmt 0 view .LVU2
+  34 0000 13B5     		push	{r0, r1, r4, lr}
+  35              	.LCFI0:
+  36              		.cfi_def_cfa_offset 16
+  37              		.cfi_offset 4, -8
+  38              		.cfi_offset 14, -4
+   7:main.c        ****     trigger_high();
+  39              		.loc 1 7 1 view .LVU3
+  40 0002 1C46     		mov	r4, r3
+  41              		.loc 1 8 5 view .LVU4
+  42 0004 FFF7FEFF 		bl	trigger_high
+  43              	.LVL1:
+   9:main.c        ****     
+  10:main.c        ****     // 1. Cast buf to (int8_t*) to satisfy network_forward
+  11:main.c        ****     // 2. Store the result in a variable
+  12:main.c        ****     int8_t result = network_forward((int8_t*)buf);
+  44              		.loc 1 12 5 is_stmt 1 view .LVU5
+  45              		.loc 1 12 21 is_stmt 0 view .LVU6
+  46 0008 2046     		mov	r0, r4
+  47 000a FFF7FEFF 		bl	network_forward
+  48              	.LVL2:
+  13:main.c        ****     
+  14:main.c        ****     // 3. Pass the ADDRESS of the result (&result) to simpleserial_put
+  15:main.c        ****     // Note: len should match the size of what you are sending (e.g., 4 bytes for int32_t)
+  16:main.c        ****     simpleserial_put('r', sizeof(result), (uint8_t*)&result);
+  49              		.loc 1 16 5 view .LVU7
+  50 000e 0DF10702 		add	r2, sp, #7
+  12:main.c        ****     
+  51              		.loc 1 12 12 discriminator 1 view .LVU8
+  52 0012 8DF80700 		strb	r0, [sp, #7]
+  53              		.loc 1 16 5 is_stmt 1 view .LVU9
+  54 0016 0121     		movs	r1, #1
+  55 0018 7220     		movs	r0, #114
+  56 001a FFF7FEFF 		bl	simpleserial_put
+  57              	.LVL3:
+  17:main.c        ****     
+  18:main.c        ****     trigger_low();
+  58              		.loc 1 18 5 view .LVU10
+  59 001e FFF7FEFF 		bl	trigger_low
+  60              	.LVL4:
+  19:main.c        ****     
+  20:main.c        ****     simpleserial_put('e', 1, (uint8_t[]){0x01});
+  61              		.loc 1 20 5 view .LVU11
+  62              		.loc 1 20 41 is_stmt 0 view .LVU12
+  63 0022 0121     		movs	r1, #1
+  64              		.loc 1 20 5 view .LVU13
+  65 0024 01AA     		add	r2, sp, #4
+  66 0026 6520     		movs	r0, #101
+  67              		.loc 1 20 41 view .LVU14
+  68 0028 8DF80410 		strb	r1, [sp, #4]
+  69              		.loc 1 20 5 view .LVU15
+  70 002c FFF7FEFF 		bl	simpleserial_put
+  71              	.LVL5:
+  21:main.c        ****     return 0;
+  72              		.loc 1 21 5 is_stmt 1 view .LVU16
+  22:main.c        **** }
+  73              		.loc 1 22 1 is_stmt 0 view .LVU17
+  74 0030 0020     		movs	r0, #0
+  75 0032 02B0     		add	sp, sp, #8
+  76              	.LCFI1:
+  77              		.cfi_def_cfa_offset 8
+  78              		@ sp needed
+  79 0034 10BD     		pop	{r4, pc}
+  80              		.loc 1 22 1 view .LVU18
+  81              		.cfi_endproc
+  82              	.LFE0:
+  84              		.section	.text.startup.main,"ax",%progbits
+  85              		.align	1
+  86              		.global	main
+  87              		.syntax unified
+  88              		.thumb
+  89              		.thumb_func
+  91              	main:
+  92              	.LFB1:
+  23:main.c        **** 
+  24:main.c        **** int main(void)
+  25:main.c        **** {
+  93              		.loc 1 25 1 is_stmt 1 view -0
+  94              		.cfi_startproc
+  95              		@ Volatile: function does not return.
+  96              		@ args = 0, pretend = 0, frame = 0
+  97              		@ frame_needed = 0, uses_anonymous_args = 0
+  26:main.c        ****     platform_init();
+  98              		.loc 1 26 5 view .LVU20
+  25:main.c        ****     platform_init();
+  99              		.loc 1 25 1 is_stmt 0 view .LVU21
+ 100 0000 08B5     		push	{r3, lr}
+ 101              	.LCFI2:
+ 102              		.cfi_def_cfa_offset 8
+ 103              		.cfi_offset 3, -8
+ 104              		.cfi_offset 14, -4
+ 105              		.loc 1 26 5 view .LVU22
+ 106 0002 FFF7FEFF 		bl	platform_init
+ 107              	.LVL6:
+  27:main.c        ****     init_uart();
+ 108              		.loc 1 27 5 is_stmt 1 view .LVU23
+ 109 0006 FFF7FEFF 		bl	init_uart
+ 110              	.LVL7:
+  28:main.c        ****     trigger_setup();
+ 111              		.loc 1 28 5 view .LVU24
+ 112 000a FFF7FEFF 		bl	trigger_setup
+ 113              	.LVL8:
+  29:main.c        ****     simpleserial_init();
+ 114              		.loc 1 29 5 view .LVU25
+ 115 000e FFF7FEFF 		bl	simpleserial_init
+ 116              	.LVL9:
+  30:main.c        ****     simpleserial_addcmd('p', 10, handle);
+ 117              		.loc 1 30 5 view .LVU26
+ 118 0012 044A     		ldr	r2, .L4
+ 119 0014 0A21     		movs	r1, #10
+ 120 0016 7020     		movs	r0, #112
+ 121 0018 FFF7FEFF 		bl	simpleserial_addcmd
+ 122              	.LVL10:
+ 123              	.L3:
+  31:main.c        ****     while(1) simpleserial_get();
+ 124              		.loc 1 31 5 discriminator 1 view .LVU27
+ 125              		.loc 1 31 14 discriminator 1 view .LVU28
+ 126 001c FFF7FEFF 		bl	simpleserial_get
+ 127              	.LVL11:
+ 128              		.loc 1 31 10 discriminator 1 view .LVU29
+ 129 0020 FCE7     		b	.L3
+ 130              	.L5:
+ 131 0022 00BF     		.align	2
+ 132              	.L4:
+ 133 0024 00000000 		.word	handle
+ 134              		.cfi_endproc
+ 135              	.LFE1:
+ 137              		.text
+ 138              	.Letext0:
+ 139              		.file 2 "/usr/arm-none-eabi/include/machine/_default_types.h"
+ 140              		.file 3 "/usr/arm-none-eabi/include/sys/_stdint.h"
+ 141              		.file 4 "network_config.h"
+ 142              		.file 5 "./simpleserial/simpleserial.h"
+ 143              		.file 6 "./hal/stm32f3/stm32f3_hal.h"
+ 144              		.file 7 "./hal/hal.h"
+ 145              		.file 8 "network.h"
+DEFINED SYMBOLS
+                            *ABS*:00000000 main.c
+     /tmp/ccBlcT4a.s:19     .text.handle:00000000 $t
+     /tmp/ccBlcT4a.s:25     .text.handle:00000000 handle
+     /tmp/ccBlcT4a.s:85     .text.startup.main:00000000 $t
+     /tmp/ccBlcT4a.s:91     .text.startup.main:00000000 main
+     /tmp/ccBlcT4a.s:133    .text.startup.main:00000024 $d
+
+UNDEFINED SYMBOLS
+trigger_high
+network_forward
+simpleserial_put
+trigger_low
+platform_init
+init_uart
+trigger_setup
+simpleserial_init
+simpleserial_addcmd
+simpleserial_get
