@@ -1,0 +1,714 @@
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 4
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"code_multiply.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.file 1 "code_multiply.c"
+  18              		.section	.text.multiply_codes,"ax",%progbits
+  19              		.align	1
+  20              		.global	multiply_codes
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  25              	multiply_codes:
+  26              	.LVL0:
+  27              	.LFB0:
+   1:code_multiply.c **** #include "code_multiply.h"
+   2:code_multiply.c **** #include "mult_lut.h"
+   3:code_multiply.c **** 
+   4:code_multiply.c **** int8_t multiply_codes(uint16_t a, uint16_t b) {
+  28              		.loc 1 4 47 view -0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+   5:code_multiply.c ****     // linear search through 196 entries
+   6:code_multiply.c ****     for(int i = 0; i < 196; i++) {
+  32              		.loc 1 6 5 view .LVU1
+  33              	.LBB2:
+  34              		.loc 1 6 9 view .LVU2
+  35              		.loc 1 6 22 discriminator 1 view .LVU3
+  36 0000 0B4B     		ldr	r3, .L6
+  37              	.LBE2:
+   4:code_multiply.c ****     // linear search through 196 entries
+  38              		.loc 1 4 47 is_stmt 0 view .LVU4
+  39 0002 30B5     		push	{r4, r5, lr}
+  40              	.LCFI0:
+  41              		.cfi_def_cfa_offset 12
+  42              		.cfi_offset 4, -12
+  43              		.cfi_offset 5, -8
+  44              		.cfi_offset 14, -4
+  45              	.LBB3:
+  46              		.loc 1 6 13 view .LVU5
+  47 0004 0022     		movs	r2, #0
+  48 0006 1C46     		mov	r4, r3
+  49              	.LVL1:
+  50              	.L4:
+   7:code_multiply.c ****         if(mult_lut[i].a == a && mult_lut[i].b == b) {
+  51              		.loc 1 7 9 is_stmt 1 view .LVU6
+  52              		.loc 1 7 11 is_stmt 0 view .LVU7
+  53 0008 1D88     		ldrh	r5, [r3]
+  54 000a 8542     		cmp	r5, r0
+  55 000c 08D1     		bne	.L2
+  56              		.loc 1 7 31 discriminator 1 view .LVU8
+  57 000e 5D88     		ldrh	r5, [r3, #2]
+  58 0010 8D42     		cmp	r5, r1
+  59 0012 05D1     		bne	.L2
+   8:code_multiply.c ****             return mult_lut[i].result;
+  60              		.loc 1 8 13 is_stmt 1 view .LVU9
+  61              		.loc 1 8 31 is_stmt 0 view .LVU10
+  62 0014 0623     		movs	r3, #6
+  63 0016 03FB0244 		mla	r4, r3, r2, r4
+  64 001a 94F90400 		ldrsb	r0, [r4, #4]
+  65              	.LVL2:
+  66              	.L3:
+  67              		.loc 1 8 31 view .LVU11
+  68              	.LBE3:
+   9:code_multiply.c ****         }
+  10:code_multiply.c ****     }
+  11:code_multiply.c ****     return 0;  // invalid code pair
+  12:code_multiply.c **** }...
+  69              		.loc 1 12 1 view .LVU12
+  70 001e 30BD     		pop	{r4, r5, pc}
+  71              	.LVL3:
+  72              	.L2:
+  73              	.LBB4:
+   6:code_multiply.c ****     for(int i = 0; i < 196; i++) {
+  74              		.loc 1 6 30 is_stmt 1 discriminator 2 view .LVU13
+  75 0020 0132     		adds	r2, r2, #1
+  76              	.LVL4:
+   6:code_multiply.c ****     for(int i = 0; i < 196; i++) {
+  77              		.loc 1 6 22 discriminator 1 view .LVU14
+  78 0022 C42A     		cmp	r2, #196
+  79 0024 03F10603 		add	r3, r3, #6
+  80 0028 EED1     		bne	.L4
+  81              	.LBE4:
+  11:code_multiply.c ****     return 0;  // invalid code pair
+  82              		.loc 1 11 12 is_stmt 0 view .LVU15
+  83 002a 0020     		movs	r0, #0
+  84              	.LVL5:
+  11:code_multiply.c ****     return 0;  // invalid code pair
+  85              		.loc 1 11 12 view .LVU16
+  86 002c F7E7     		b	.L3
+  87              	.L7:
+  88 002e 00BF     		.align	2
+  89              	.L6:
+  90 0030 00000000 		.word	.LANCHOR0
+  91              		.cfi_endproc
+  92              	.LFE0:
+  94              		.section	.rodata
+  95              		.align	1
+  96              		.set	.LANCHOR0,. + 0
+  99              	mult_lut:
+ 100 0000 8168     		.short	26753
+ 101 0002 8168     		.short	26753
+ 102 0004 6200     		.short	98
+ 103 0006 8168     		.short	26753
+ 104 0008 8228     		.short	10370
+ 105 000a 5B00     		.short	91
+ 106 000c 8168     		.short	26753
+ 107 000e 0340     		.short	16387
+ 108 0010 5400     		.short	84
+ 109 0012 8168     		.short	26753
+ 110 0014 8448     		.short	18564
+ 111 0016 4D00     		.short	77
+ 112 0018 8168     		.short	26753
+ 113 001a 0520     		.short	8197
+ 114 001c 4600     		.short	70
+ 115 001e 8168     		.short	26753
+ 116 0020 0660     		.short	24582
+ 117 0022 3F00     		.short	63
+ 118 0024 8168     		.short	26753
+ 119 0026 8708     		.short	2183
+ 120 0028 3800     		.short	56
+ 121 002a 8168     		.short	26753
+ 122 002c 8808     		.short	2184
+ 123 002e 2B00     		.short	43
+ 124 0030 8168     		.short	26753
+ 125 0032 0960     		.short	24585
+ 126 0034 2400     		.short	36
+ 127 0036 8168     		.short	26753
+ 128 0038 0A20     		.short	8202
+ 129 003a 1D00     		.short	29
+ 130 003c 8168     		.short	26753
+ 131 003e 8B48     		.short	18571
+ 132 0040 1600     		.short	22
+ 133 0042 8168     		.short	26753
+ 134 0044 0C40     		.short	16396
+ 135 0046 0F00     		.short	15
+ 136 0048 8168     		.short	26753
+ 137 004a 8D28     		.short	10381
+ 138 004c 0800     		.short	8
+ 139 004e 8168     		.short	26753
+ 140 0050 8E68     		.short	26766
+ 141 0052 0100     		.short	1
+ 142 0054 8228     		.short	10370
+ 143 0056 8168     		.short	26753
+ 144 0058 5B00     		.short	91
+ 145 005a 8228     		.short	10370
+ 146 005c 8228     		.short	10370
+ 147 005e 5500     		.short	85
+ 148 0060 8228     		.short	10370
+ 149 0062 0340     		.short	16387
+ 150 0064 4F00     		.short	79
+ 151 0066 8228     		.short	10370
+ 152 0068 8448     		.short	18564
+ 153 006a 4900     		.short	73
+ 154 006c 8228     		.short	10370
+ 155 006e 0520     		.short	8197
+ 156 0070 4300     		.short	67
+ 157 0072 8228     		.short	10370
+ 158 0074 0660     		.short	24582
+ 159 0076 3D00     		.short	61
+ 160 0078 8228     		.short	10370
+ 161 007a 8708     		.short	2183
+ 162 007c 3700     		.short	55
+ 163 007e 8228     		.short	10370
+ 164 0080 8808     		.short	2184
+ 165 0082 2C00     		.short	44
+ 166 0084 8228     		.short	10370
+ 167 0086 0960     		.short	24585
+ 168 0088 2600     		.short	38
+ 169 008a 8228     		.short	10370
+ 170 008c 0A20     		.short	8202
+ 171 008e 2000     		.short	32
+ 172 0090 8228     		.short	10370
+ 173 0092 8B48     		.short	18571
+ 174 0094 1A00     		.short	26
+ 175 0096 8228     		.short	10370
+ 176 0098 0C40     		.short	16396
+ 177 009a 1400     		.short	20
+ 178 009c 8228     		.short	10370
+ 179 009e 8D28     		.short	10381
+ 180 00a0 0E00     		.short	14
+ 181 00a2 8228     		.short	10370
+ 182 00a4 8E68     		.short	26766
+ 183 00a6 0800     		.short	8
+ 184 00a8 0340     		.short	16387
+ 185 00aa 8168     		.short	26753
+ 186 00ac 5400     		.short	84
+ 187 00ae 0340     		.short	16387
+ 188 00b0 8228     		.short	10370
+ 189 00b2 4F00     		.short	79
+ 190 00b4 0340     		.short	16387
+ 191 00b6 0340     		.short	16387
+ 192 00b8 4A00     		.short	74
+ 193 00ba 0340     		.short	16387
+ 194 00bc 8448     		.short	18564
+ 195 00be 4500     		.short	69
+ 196 00c0 0340     		.short	16387
+ 197 00c2 0520     		.short	8197
+ 198 00c4 4000     		.short	64
+ 199 00c6 0340     		.short	16387
+ 200 00c8 0660     		.short	24582
+ 201 00ca 3B00     		.short	59
+ 202 00cc 0340     		.short	16387
+ 203 00ce 8708     		.short	2183
+ 204 00d0 3600     		.short	54
+ 205 00d2 0340     		.short	16387
+ 206 00d4 8808     		.short	2184
+ 207 00d6 2D00     		.short	45
+ 208 00d8 0340     		.short	16387
+ 209 00da 0960     		.short	24585
+ 210 00dc 2800     		.short	40
+ 211 00de 0340     		.short	16387
+ 212 00e0 0A20     		.short	8202
+ 213 00e2 2300     		.short	35
+ 214 00e4 0340     		.short	16387
+ 215 00e6 8B48     		.short	18571
+ 216 00e8 1E00     		.short	30
+ 217 00ea 0340     		.short	16387
+ 218 00ec 0C40     		.short	16396
+ 219 00ee 1900     		.short	25
+ 220 00f0 0340     		.short	16387
+ 221 00f2 8D28     		.short	10381
+ 222 00f4 1400     		.short	20
+ 223 00f6 0340     		.short	16387
+ 224 00f8 8E68     		.short	26766
+ 225 00fa 0F00     		.short	15
+ 226 00fc 8448     		.short	18564
+ 227 00fe 8168     		.short	26753
+ 228 0100 4D00     		.short	77
+ 229 0102 8448     		.short	18564
+ 230 0104 8228     		.short	10370
+ 231 0106 4900     		.short	73
+ 232 0108 8448     		.short	18564
+ 233 010a 0340     		.short	16387
+ 234 010c 4500     		.short	69
+ 235 010e 8448     		.short	18564
+ 236 0110 8448     		.short	18564
+ 237 0112 4100     		.short	65
+ 238 0114 8448     		.short	18564
+ 239 0116 0520     		.short	8197
+ 240 0118 3D00     		.short	61
+ 241 011a 8448     		.short	18564
+ 242 011c 0660     		.short	24582
+ 243 011e 3900     		.short	57
+ 244 0120 8448     		.short	18564
+ 245 0122 8708     		.short	2183
+ 246 0124 3500     		.short	53
+ 247 0126 8448     		.short	18564
+ 248 0128 8808     		.short	2184
+ 249 012a 2E00     		.short	46
+ 250 012c 8448     		.short	18564
+ 251 012e 0960     		.short	24585
+ 252 0130 2A00     		.short	42
+ 253 0132 8448     		.short	18564
+ 254 0134 0A20     		.short	8202
+ 255 0136 2600     		.short	38
+ 256 0138 8448     		.short	18564
+ 257 013a 8B48     		.short	18571
+ 258 013c 2200     		.short	34
+ 259 013e 8448     		.short	18564
+ 260 0140 0C40     		.short	16396
+ 261 0142 1E00     		.short	30
+ 262 0144 8448     		.short	18564
+ 263 0146 8D28     		.short	10381
+ 264 0148 1A00     		.short	26
+ 265 014a 8448     		.short	18564
+ 266 014c 8E68     		.short	26766
+ 267 014e 1600     		.short	22
+ 268 0150 0520     		.short	8197
+ 269 0152 8168     		.short	26753
+ 270 0154 4600     		.short	70
+ 271 0156 0520     		.short	8197
+ 272 0158 8228     		.short	10370
+ 273 015a 4300     		.short	67
+ 274 015c 0520     		.short	8197
+ 275 015e 0340     		.short	16387
+ 276 0160 4000     		.short	64
+ 277 0162 0520     		.short	8197
+ 278 0164 8448     		.short	18564
+ 279 0166 3D00     		.short	61
+ 280 0168 0520     		.short	8197
+ 281 016a 0520     		.short	8197
+ 282 016c 3A00     		.short	58
+ 283 016e 0520     		.short	8197
+ 284 0170 0660     		.short	24582
+ 285 0172 3700     		.short	55
+ 286 0174 0520     		.short	8197
+ 287 0176 8708     		.short	2183
+ 288 0178 3400     		.short	52
+ 289 017a 0520     		.short	8197
+ 290 017c 8808     		.short	2184
+ 291 017e 2F00     		.short	47
+ 292 0180 0520     		.short	8197
+ 293 0182 0960     		.short	24585
+ 294 0184 2C00     		.short	44
+ 295 0186 0520     		.short	8197
+ 296 0188 0A20     		.short	8202
+ 297 018a 2900     		.short	41
+ 298 018c 0520     		.short	8197
+ 299 018e 8B48     		.short	18571
+ 300 0190 2600     		.short	38
+ 301 0192 0520     		.short	8197
+ 302 0194 0C40     		.short	16396
+ 303 0196 2300     		.short	35
+ 304 0198 0520     		.short	8197
+ 305 019a 8D28     		.short	10381
+ 306 019c 2000     		.short	32
+ 307 019e 0520     		.short	8197
+ 308 01a0 8E68     		.short	26766
+ 309 01a2 1D00     		.short	29
+ 310 01a4 0660     		.short	24582
+ 311 01a6 8168     		.short	26753
+ 312 01a8 3F00     		.short	63
+ 313 01aa 0660     		.short	24582
+ 314 01ac 8228     		.short	10370
+ 315 01ae 3D00     		.short	61
+ 316 01b0 0660     		.short	24582
+ 317 01b2 0340     		.short	16387
+ 318 01b4 3B00     		.short	59
+ 319 01b6 0660     		.short	24582
+ 320 01b8 8448     		.short	18564
+ 321 01ba 3900     		.short	57
+ 322 01bc 0660     		.short	24582
+ 323 01be 0520     		.short	8197
+ 324 01c0 3700     		.short	55
+ 325 01c2 0660     		.short	24582
+ 326 01c4 0660     		.short	24582
+ 327 01c6 3500     		.short	53
+ 328 01c8 0660     		.short	24582
+ 329 01ca 8708     		.short	2183
+ 330 01cc 3300     		.short	51
+ 331 01ce 0660     		.short	24582
+ 332 01d0 8808     		.short	2184
+ 333 01d2 3000     		.short	48
+ 334 01d4 0660     		.short	24582
+ 335 01d6 0960     		.short	24585
+ 336 01d8 2E00     		.short	46
+ 337 01da 0660     		.short	24582
+ 338 01dc 0A20     		.short	8202
+ 339 01de 2C00     		.short	44
+ 340 01e0 0660     		.short	24582
+ 341 01e2 8B48     		.short	18571
+ 342 01e4 2A00     		.short	42
+ 343 01e6 0660     		.short	24582
+ 344 01e8 0C40     		.short	16396
+ 345 01ea 2800     		.short	40
+ 346 01ec 0660     		.short	24582
+ 347 01ee 8D28     		.short	10381
+ 348 01f0 2600     		.short	38
+ 349 01f2 0660     		.short	24582
+ 350 01f4 8E68     		.short	26766
+ 351 01f6 2400     		.short	36
+ 352 01f8 8708     		.short	2183
+ 353 01fa 8168     		.short	26753
+ 354 01fc 3800     		.short	56
+ 355 01fe 8708     		.short	2183
+ 356 0200 8228     		.short	10370
+ 357 0202 3700     		.short	55
+ 358 0204 8708     		.short	2183
+ 359 0206 0340     		.short	16387
+ 360 0208 3600     		.short	54
+ 361 020a 8708     		.short	2183
+ 362 020c 8448     		.short	18564
+ 363 020e 3500     		.short	53
+ 364 0210 8708     		.short	2183
+ 365 0212 0520     		.short	8197
+ 366 0214 3400     		.short	52
+ 367 0216 8708     		.short	2183
+ 368 0218 0660     		.short	24582
+ 369 021a 3300     		.short	51
+ 370 021c 8708     		.short	2183
+ 371 021e 8708     		.short	2183
+ 372 0220 3200     		.short	50
+ 373 0222 8708     		.short	2183
+ 374 0224 8808     		.short	2184
+ 375 0226 3100     		.short	49
+ 376 0228 8708     		.short	2183
+ 377 022a 0960     		.short	24585
+ 378 022c 3000     		.short	48
+ 379 022e 8708     		.short	2183
+ 380 0230 0A20     		.short	8202
+ 381 0232 2F00     		.short	47
+ 382 0234 8708     		.short	2183
+ 383 0236 8B48     		.short	18571
+ 384 0238 2E00     		.short	46
+ 385 023a 8708     		.short	2183
+ 386 023c 0C40     		.short	16396
+ 387 023e 2D00     		.short	45
+ 388 0240 8708     		.short	2183
+ 389 0242 8D28     		.short	10381
+ 390 0244 2C00     		.short	44
+ 391 0246 8708     		.short	2183
+ 392 0248 8E68     		.short	26766
+ 393 024a 2B00     		.short	43
+ 394 024c 8808     		.short	2184
+ 395 024e 8168     		.short	26753
+ 396 0250 2B00     		.short	43
+ 397 0252 8808     		.short	2184
+ 398 0254 8228     		.short	10370
+ 399 0256 2C00     		.short	44
+ 400 0258 8808     		.short	2184
+ 401 025a 0340     		.short	16387
+ 402 025c 2D00     		.short	45
+ 403 025e 8808     		.short	2184
+ 404 0260 8448     		.short	18564
+ 405 0262 2E00     		.short	46
+ 406 0264 8808     		.short	2184
+ 407 0266 0520     		.short	8197
+ 408 0268 2F00     		.short	47
+ 409 026a 8808     		.short	2184
+ 410 026c 0660     		.short	24582
+ 411 026e 3000     		.short	48
+ 412 0270 8808     		.short	2184
+ 413 0272 8708     		.short	2183
+ 414 0274 3100     		.short	49
+ 415 0276 8808     		.short	2184
+ 416 0278 8808     		.short	2184
+ 417 027a 3200     		.short	50
+ 418 027c 8808     		.short	2184
+ 419 027e 0960     		.short	24585
+ 420 0280 3300     		.short	51
+ 421 0282 8808     		.short	2184
+ 422 0284 0A20     		.short	8202
+ 423 0286 3400     		.short	52
+ 424 0288 8808     		.short	2184
+ 425 028a 8B48     		.short	18571
+ 426 028c 3500     		.short	53
+ 427 028e 8808     		.short	2184
+ 428 0290 0C40     		.short	16396
+ 429 0292 3600     		.short	54
+ 430 0294 8808     		.short	2184
+ 431 0296 8D28     		.short	10381
+ 432 0298 3700     		.short	55
+ 433 029a 8808     		.short	2184
+ 434 029c 8E68     		.short	26766
+ 435 029e 3800     		.short	56
+ 436 02a0 0960     		.short	24585
+ 437 02a2 8168     		.short	26753
+ 438 02a4 2400     		.short	36
+ 439 02a6 0960     		.short	24585
+ 440 02a8 8228     		.short	10370
+ 441 02aa 2600     		.short	38
+ 442 02ac 0960     		.short	24585
+ 443 02ae 0340     		.short	16387
+ 444 02b0 2800     		.short	40
+ 445 02b2 0960     		.short	24585
+ 446 02b4 8448     		.short	18564
+ 447 02b6 2A00     		.short	42
+ 448 02b8 0960     		.short	24585
+ 449 02ba 0520     		.short	8197
+ 450 02bc 2C00     		.short	44
+ 451 02be 0960     		.short	24585
+ 452 02c0 0660     		.short	24582
+ 453 02c2 2E00     		.short	46
+ 454 02c4 0960     		.short	24585
+ 455 02c6 8708     		.short	2183
+ 456 02c8 3000     		.short	48
+ 457 02ca 0960     		.short	24585
+ 458 02cc 8808     		.short	2184
+ 459 02ce 3300     		.short	51
+ 460 02d0 0960     		.short	24585
+ 461 02d2 0960     		.short	24585
+ 462 02d4 3500     		.short	53
+ 463 02d6 0960     		.short	24585
+ 464 02d8 0A20     		.short	8202
+ 465 02da 3700     		.short	55
+ 466 02dc 0960     		.short	24585
+ 467 02de 8B48     		.short	18571
+ 468 02e0 3900     		.short	57
+ 469 02e2 0960     		.short	24585
+ 470 02e4 0C40     		.short	16396
+ 471 02e6 3B00     		.short	59
+ 472 02e8 0960     		.short	24585
+ 473 02ea 8D28     		.short	10381
+ 474 02ec 3D00     		.short	61
+ 475 02ee 0960     		.short	24585
+ 476 02f0 8E68     		.short	26766
+ 477 02f2 3F00     		.short	63
+ 478 02f4 0A20     		.short	8202
+ 479 02f6 8168     		.short	26753
+ 480 02f8 1D00     		.short	29
+ 481 02fa 0A20     		.short	8202
+ 482 02fc 8228     		.short	10370
+ 483 02fe 2000     		.short	32
+ 484 0300 0A20     		.short	8202
+ 485 0302 0340     		.short	16387
+ 486 0304 2300     		.short	35
+ 487 0306 0A20     		.short	8202
+ 488 0308 8448     		.short	18564
+ 489 030a 2600     		.short	38
+ 490 030c 0A20     		.short	8202
+ 491 030e 0520     		.short	8197
+ 492 0310 2900     		.short	41
+ 493 0312 0A20     		.short	8202
+ 494 0314 0660     		.short	24582
+ 495 0316 2C00     		.short	44
+ 496 0318 0A20     		.short	8202
+ 497 031a 8708     		.short	2183
+ 498 031c 2F00     		.short	47
+ 499 031e 0A20     		.short	8202
+ 500 0320 8808     		.short	2184
+ 501 0322 3400     		.short	52
+ 502 0324 0A20     		.short	8202
+ 503 0326 0960     		.short	24585
+ 504 0328 3700     		.short	55
+ 505 032a 0A20     		.short	8202
+ 506 032c 0A20     		.short	8202
+ 507 032e 3A00     		.short	58
+ 508 0330 0A20     		.short	8202
+ 509 0332 8B48     		.short	18571
+ 510 0334 3D00     		.short	61
+ 511 0336 0A20     		.short	8202
+ 512 0338 0C40     		.short	16396
+ 513 033a 4000     		.short	64
+ 514 033c 0A20     		.short	8202
+ 515 033e 8D28     		.short	10381
+ 516 0340 4300     		.short	67
+ 517 0342 0A20     		.short	8202
+ 518 0344 8E68     		.short	26766
+ 519 0346 4600     		.short	70
+ 520 0348 8B48     		.short	18571
+ 521 034a 8168     		.short	26753
+ 522 034c 1600     		.short	22
+ 523 034e 8B48     		.short	18571
+ 524 0350 8228     		.short	10370
+ 525 0352 1A00     		.short	26
+ 526 0354 8B48     		.short	18571
+ 527 0356 0340     		.short	16387
+ 528 0358 1E00     		.short	30
+ 529 035a 8B48     		.short	18571
+ 530 035c 8448     		.short	18564
+ 531 035e 2200     		.short	34
+ 532 0360 8B48     		.short	18571
+ 533 0362 0520     		.short	8197
+ 534 0364 2600     		.short	38
+ 535 0366 8B48     		.short	18571
+ 536 0368 0660     		.short	24582
+ 537 036a 2A00     		.short	42
+ 538 036c 8B48     		.short	18571
+ 539 036e 8708     		.short	2183
+ 540 0370 2E00     		.short	46
+ 541 0372 8B48     		.short	18571
+ 542 0374 8808     		.short	2184
+ 543 0376 3500     		.short	53
+ 544 0378 8B48     		.short	18571
+ 545 037a 0960     		.short	24585
+ 546 037c 3900     		.short	57
+ 547 037e 8B48     		.short	18571
+ 548 0380 0A20     		.short	8202
+ 549 0382 3D00     		.short	61
+ 550 0384 8B48     		.short	18571
+ 551 0386 8B48     		.short	18571
+ 552 0388 4100     		.short	65
+ 553 038a 8B48     		.short	18571
+ 554 038c 0C40     		.short	16396
+ 555 038e 4500     		.short	69
+ 556 0390 8B48     		.short	18571
+ 557 0392 8D28     		.short	10381
+ 558 0394 4900     		.short	73
+ 559 0396 8B48     		.short	18571
+ 560 0398 8E68     		.short	26766
+ 561 039a 4D00     		.short	77
+ 562 039c 0C40     		.short	16396
+ 563 039e 8168     		.short	26753
+ 564 03a0 0F00     		.short	15
+ 565 03a2 0C40     		.short	16396
+ 566 03a4 8228     		.short	10370
+ 567 03a6 1400     		.short	20
+ 568 03a8 0C40     		.short	16396
+ 569 03aa 0340     		.short	16387
+ 570 03ac 1900     		.short	25
+ 571 03ae 0C40     		.short	16396
+ 572 03b0 8448     		.short	18564
+ 573 03b2 1E00     		.short	30
+ 574 03b4 0C40     		.short	16396
+ 575 03b6 0520     		.short	8197
+ 576 03b8 2300     		.short	35
+ 577 03ba 0C40     		.short	16396
+ 578 03bc 0660     		.short	24582
+ 579 03be 2800     		.short	40
+ 580 03c0 0C40     		.short	16396
+ 581 03c2 8708     		.short	2183
+ 582 03c4 2D00     		.short	45
+ 583 03c6 0C40     		.short	16396
+ 584 03c8 8808     		.short	2184
+ 585 03ca 3600     		.short	54
+ 586 03cc 0C40     		.short	16396
+ 587 03ce 0960     		.short	24585
+ 588 03d0 3B00     		.short	59
+ 589 03d2 0C40     		.short	16396
+ 590 03d4 0A20     		.short	8202
+ 591 03d6 4000     		.short	64
+ 592 03d8 0C40     		.short	16396
+ 593 03da 8B48     		.short	18571
+ 594 03dc 4500     		.short	69
+ 595 03de 0C40     		.short	16396
+ 596 03e0 0C40     		.short	16396
+ 597 03e2 4A00     		.short	74
+ 598 03e4 0C40     		.short	16396
+ 599 03e6 8D28     		.short	10381
+ 600 03e8 4F00     		.short	79
+ 601 03ea 0C40     		.short	16396
+ 602 03ec 8E68     		.short	26766
+ 603 03ee 5400     		.short	84
+ 604 03f0 8D28     		.short	10381
+ 605 03f2 8168     		.short	26753
+ 606 03f4 0800     		.short	8
+ 607 03f6 8D28     		.short	10381
+ 608 03f8 8228     		.short	10370
+ 609 03fa 0E00     		.short	14
+ 610 03fc 8D28     		.short	10381
+ 611 03fe 0340     		.short	16387
+ 612 0400 1400     		.short	20
+ 613 0402 8D28     		.short	10381
+ 614 0404 8448     		.short	18564
+ 615 0406 1A00     		.short	26
+ 616 0408 8D28     		.short	10381
+ 617 040a 0520     		.short	8197
+ 618 040c 2000     		.short	32
+ 619 040e 8D28     		.short	10381
+ 620 0410 0660     		.short	24582
+ 621 0412 2600     		.short	38
+ 622 0414 8D28     		.short	10381
+ 623 0416 8708     		.short	2183
+ 624 0418 2C00     		.short	44
+ 625 041a 8D28     		.short	10381
+ 626 041c 8808     		.short	2184
+ 627 041e 3700     		.short	55
+ 628 0420 8D28     		.short	10381
+ 629 0422 0960     		.short	24585
+ 630 0424 3D00     		.short	61
+ 631 0426 8D28     		.short	10381
+ 632 0428 0A20     		.short	8202
+ 633 042a 4300     		.short	67
+ 634 042c 8D28     		.short	10381
+ 635 042e 8B48     		.short	18571
+ 636 0430 4900     		.short	73
+ 637 0432 8D28     		.short	10381
+ 638 0434 0C40     		.short	16396
+ 639 0436 4F00     		.short	79
+ 640 0438 8D28     		.short	10381
+ 641 043a 8D28     		.short	10381
+ 642 043c 5500     		.short	85
+ 643 043e 8D28     		.short	10381
+ 644 0440 8E68     		.short	26766
+ 645 0442 5B00     		.short	91
+ 646 0444 8E68     		.short	26766
+ 647 0446 8168     		.short	26753
+ 648 0448 0100     		.short	1
+ 649 044a 8E68     		.short	26766
+ 650 044c 8228     		.short	10370
+ 651 044e 0800     		.short	8
+ 652 0450 8E68     		.short	26766
+ 653 0452 0340     		.short	16387
+ 654 0454 0F00     		.short	15
+ 655 0456 8E68     		.short	26766
+ 656 0458 8448     		.short	18564
+ 657 045a 1600     		.short	22
+ 658 045c 8E68     		.short	26766
+ 659 045e 0520     		.short	8197
+ 660 0460 1D00     		.short	29
+ 661 0462 8E68     		.short	26766
+ 662 0464 0660     		.short	24582
+ 663 0466 2400     		.short	36
+ 664 0468 8E68     		.short	26766
+ 665 046a 8708     		.short	2183
+ 666 046c 2B00     		.short	43
+ 667 046e 8E68     		.short	26766
+ 668 0470 8808     		.short	2184
+ 669 0472 3800     		.short	56
+ 670 0474 8E68     		.short	26766
+ 671 0476 0960     		.short	24585
+ 672 0478 3F00     		.short	63
+ 673 047a 8E68     		.short	26766
+ 674 047c 0A20     		.short	8202
+ 675 047e 4600     		.short	70
+ 676 0480 8E68     		.short	26766
+ 677 0482 8B48     		.short	18571
+ 678 0484 4D00     		.short	77
+ 679 0486 8E68     		.short	26766
+ 680 0488 0C40     		.short	16396
+ 681 048a 5400     		.short	84
+ 682 048c 8E68     		.short	26766
+ 683 048e 8D28     		.short	10381
+ 684 0490 5B00     		.short	91
+ 685 0492 8E68     		.short	26766
+ 686 0494 8E68     		.short	26766
+ 687 0496 6200     		.short	98
+ 688              		.text
+ 689              	.Letext0:
+ 690              		.file 2 "/usr/arm-none-eabi/include/machine/_default_types.h"
+ 691              		.file 3 "/usr/arm-none-eabi/include/sys/_stdint.h"
+ 692              		.file 4 "mult_lut.h"
+DEFINED SYMBOLS
+                            *ABS*:00000000 code_multiply.c
+     /tmp/ccPG8caJ.s:19     .text.multiply_codes:00000000 $t
+     /tmp/ccPG8caJ.s:25     .text.multiply_codes:00000000 multiply_codes
+     /tmp/ccPG8caJ.s:90     .text.multiply_codes:00000030 $d
+     /tmp/ccPG8caJ.s:95     .rodata:00000000 $d
+     /tmp/ccPG8caJ.s:99     .rodata:00000000 mult_lut
+
+NO UNDEFINED SYMBOLS

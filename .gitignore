@@ -1,0 +1,5 @@
+collected_traces/
+#compiled_for_CWLITEARM_unprotected_symmetrical/
+#protected_nn_with_lut_MULT_ADD_ARRAY_O1/
+#protected_nn_with_lut_MULT_ADD_TABLES_On/
+**/hal/
